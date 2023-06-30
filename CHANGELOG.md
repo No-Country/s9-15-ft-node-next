@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2023-06-30)
+
+
+### Features
+
+* :sparkles: añadido cliente a monorepo ([cb93f29](https://github.com/No-Country/s9-15-ft-node-next/commit/cb93f2922d35e5f3245d92fdd652d9e9d090f37e))
+
 ## [1.6.17](https://github.com/myopic-design/monorepo-nextjs-tailwindcss-template/compare/v1.6.16...v1.6.17) (2023-06-28)
 
 
