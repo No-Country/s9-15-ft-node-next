@@ -17,8 +17,8 @@ export class AuthJwtController {
   @Post('/register')
   async register(@Body() registerDto: CreateUserDto, @Res() res) {
     try {
-      const { name, surname, username, email, password } = registerDto;
-      if (!name || !surname || !username || !email) {
+      const { name, surname, username, email, password, artist } = registerDto;
+      if (!name || !surname || !username || !email || !artist) {
         console.log(res.sendStatus(HttpStatus.BAD_REQUEST));
         return res.sendStatus(HttpStatus.BAD_REQUEST);
       }
@@ -37,6 +37,7 @@ export class AuthJwtController {
         name,
         surname,
         username,
+        artist,
         email,
         password: hashedPassword,
       });
@@ -44,6 +45,7 @@ export class AuthJwtController {
       const { password: omitPassword, ...userWithoutPassword } = user;
       return res.status(HttpStatus.OK).json(userWithoutPassword);
     } catch (err) {
+      console.log(err);
       return res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }

@@ -4,6 +4,7 @@ import {
   Matches,
   IsEmail,
   IsOptional,
+  IsBoolean,
 } from 'class-validator';
 
 export class UpdateUserDto {
@@ -18,6 +19,10 @@ export class UpdateUserDto {
   @IsOptional()
   @IsString()
   username?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  artist?: boolean;
 
   @IsOptional()
   @IsEmail()

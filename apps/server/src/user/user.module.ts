@@ -5,6 +5,8 @@ import { ConfigModule } from '@nestjs/config';
 
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from '../schemas/user.schema';
+import { SongsService } from 'src/songs/songs.service';
+import { Song, SongSchema } from 'src/schemas/song.schema';
 
 @Module({
   imports: [
@@ -13,10 +15,14 @@ import { User, UserSchema } from '../schemas/user.schema';
         name: User.name,
         schema: UserSchema,
       },
+      {
+        name: Song.name,
+        schema: SongSchema,
+      },
     ]),
     ConfigModule, // Agrega el ConfigModule aquí
   ],
   controllers: [UserController],
-  providers: [UserService],
+  providers: [UserService, SongsService],
 })
 export class UserModule {}

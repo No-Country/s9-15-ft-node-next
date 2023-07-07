@@ -8,19 +8,20 @@ import {
   Param,
   Put,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDto } from 'src/dto/create-song.dto';
-import { UpdateSongDto } from 'src/dto/update-songs';
+import { PaginationQueryDto } from 'src/dto/pagination-query.dto';
 
 @Controller('songs')
 export class SongsController {
   constructor(private songsService: SongsService) {}
 
   @Get()
-  async getAllSongs(@Res() res) {
+  async getAllSongs(@Query() pagination: PaginationQueryDto, @Res() res) {
     try {
-      const songs = await this.songsService.getAllSongs();
+      const songs = await this.songsService.getAllSongs(pagination);
       return res.status(HttpStatus.OK).json(songs);
     } catch (err) {
       return res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR);
