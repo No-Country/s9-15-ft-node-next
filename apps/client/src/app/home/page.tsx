@@ -9,13 +9,9 @@ function home() {
       <HeaderGlobal />
       <div className="flex">
         <Menu />
-        <section className="p-5">
+        <section className="p-8">
           <Buscador />
-          <div>
-            linea
-          </div>
-          
-
+          <div className="h-px m-10 mx-auto bg-black"></div>
           <article>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti repudiandae suscipit,
             aspernatur voluptatem beatae id possimus aliquid nostrum, dolor mollitia placeat a et
