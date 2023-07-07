@@ -1,13 +1,14 @@
-import React from "react";
-import Header from "../Components/header/Header";
-import Menu from "../Components/menu/Menu";
+import React from 'react';
+
+import Header from '../Components/header/Header';
+import Menu from '../Components/menu/Menu';
 
 function home() {
   return (
-    <main className="grid h-screen grid-cols-10 grid-rows-7">
+    <main className="grid-rows-7 grid h-screen grid-cols-10">
       <Header />
       <Menu />
-      <section className="col-span-8 p-5 border-t-2 border-t-gray-500">
+      <section className="col-span-8 border-t-2 border-t-gray-500 p-5">
         <article className="p-5">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero nemo, distinctio iusto
           consectetur iure est veniam dolor facere repellat voluptas harum tempore nihil! Fuga,
