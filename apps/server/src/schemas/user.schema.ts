@@ -9,6 +9,9 @@ export class User extends Document {
   @Prop()
   surname: string;
 
+  @Prop({ default: false })
+  artist: boolean;
+
   @Prop({ unique: true })
   username: string;
 

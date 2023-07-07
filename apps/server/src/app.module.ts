@@ -5,6 +5,7 @@ import { AuthMiddleware } from './middlewares/auth.middleware';
 import { AuthJwtModule } from './auth-jwt/auth-jwt.module';
 import { SongsModule } from './songs/songs.module';
 import { UserModule } from './user/user.module';
+import { PlaylistModule } from './playlist/playlist.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { UserModule } from './user/user.module';
     AuthJwtModule,
     SongsModule,
     UserModule,
+    PlaylistModule,
   ],
 })
 export class AppModule implements NestModule {

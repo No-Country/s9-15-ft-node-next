@@ -4,6 +4,7 @@ import {
   Matches,
   IsEmail,
   IsNotEmpty,
+  IsBoolean,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -18,6 +19,9 @@ export class CreateUserDto {
   @IsString()
   @IsNotEmpty()
   username: string;
+
+  @IsBoolean()
+  artist: boolean;
 
   @IsEmail()
   @IsNotEmpty()

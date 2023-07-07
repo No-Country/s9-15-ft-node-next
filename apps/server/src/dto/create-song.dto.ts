@@ -25,7 +25,7 @@ export class CreateSongDto {
   image: string;
 
   @IsString()
-  date: Date;
+  date: string;
 
   @IsOptional()
   @IsString()
