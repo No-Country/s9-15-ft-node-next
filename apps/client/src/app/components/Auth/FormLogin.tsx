@@ -14,7 +14,47 @@ import showEye from '@/app/assets/auth/show-eye.svg';
 import btnTwitter from '@/app/assets/auth/Twitter.svg';
 import logo from '@/app/assets/landingpage/soundwave.png';
 
+import usePostLogin from './hooks/usePostLogin';
+
 export default function FormLogin() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+
+  const postRoute = '';
+  const postLogin = usePostLogin(postRoute);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    const data = {
+      email,
+      password,
+    };
+
+    const result = await postLogin(data);
+
+    setIsSubmitting(false);
+
+    if (result.ok) {
+      // hacer algo si la solicitud es exitosa
+    } else {
+      setError(new Error('There was a problem submitting the form.'));
+    }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    if (name === 'email') {
+      setEmail(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
+  };
+
   const [visible, setVisible] = useState(false);
   return (
     <>
@@ -23,16 +63,19 @@ export default function FormLogin() {
         <p className="text-center font-semibold text-black md:pt-[57px] md:text-[24px] ">
           Iniciar Sesión
         </p>
-        <form action="" className="md:pt-[46px] ">
+        <form onSubmit={handleSubmit} className="md:pt-[46px] ">
           <div className="relative md:mb-4">
             <input
               type="email"
-              id="floating_outlined"
+              id="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
               className="border-1 peer block w-full appearance-none rounded border-neutral-400 bg-transparent bg-white px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-orange-500 focus:outline-none focus:ring-0 "
               placeholder=" "
             />
             <label
-              htmlFor="floating_outlined"
+              htmlFor="email"
               className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-[16px] text-sm  text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2  peer-focus:text-orange-500 md:text-[16px]"
             >
               Correo electrónico
@@ -41,12 +84,15 @@ export default function FormLogin() {
           <div className="relative md:mb-4">
             <input
               type={visible ? 'text' : 'password'}
-              id="floating_outlined"
+              id="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
               className="border-1 peer block w-full appearance-none rounded border-neutral-400 bg-transparent bg-white px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-orange-500 focus:outline-none focus:ring-0 "
               placeholder=" "
             />
             <label
-              htmlFor="floating_outlined"
+              htmlFor="password"
               className="absolute left-1 top-2 z-10  origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-[16px] text-sm  text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-orange-500 md:text-[16px]"
             >
               Contraseña
@@ -75,9 +121,14 @@ export default function FormLogin() {
               />
             )}
           </div>
-          <button className="inline-flex h-12 w-[348px] items-center justify-center gap-2.5 bg-zinc-300 p-4 text-[16px] font-semibold uppercase leading-none text-neutral-400">
-            Continuar
+          <button
+            className="inline-flex h-12 w-[348px] items-center justify-center gap-2.5 bg-zinc-300 p-4 text-[16px] font-semibold uppercase leading-none text-neutral-400"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? 'Loading...' : 'Continuar'}
           </button>
+
+          {error != null && <div>Error: {error.message}</div>}
         </form>
         <div className="mt-4 flex justify-center">
           <div className="inline-flex items-center justify-center ">
