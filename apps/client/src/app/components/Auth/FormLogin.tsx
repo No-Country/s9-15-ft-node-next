@@ -22,7 +22,7 @@ export default function FormLogin() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const postRoute = '';
+  const postRoute = 'http://localhost:4000/auth-jwt/register';
   const postLogin = usePostLogin(postRoute);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
