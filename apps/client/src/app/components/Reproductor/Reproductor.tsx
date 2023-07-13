@@ -4,10 +4,10 @@
 import Image from 'next/image';
 import React, { useEffect, useRef, useState } from 'react';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
-import { HiStop } from 'react-icons/hi2';
+import { TbPlayerPauseFilled } from 'react-icons/tb';
 import { TbPlayerPlayFilled } from 'react-icons/tb';
 
-import rendom from '@/app/assets/Aleatorio.png';
+import random from '@/app/assets/Aleatorio.png';
 import ant from '@/app/assets/Anterior.png';
 import img from '@/app/assets/landingpage/p.jpg';
 import repet from '@/app/assets/Repeat.png';
@@ -96,7 +96,12 @@ const ReproductorResponsive: React.FC<ReproductorProps> = ({ songs, onSongSelect
     } else {
       audioElement.pause();
     }
-  }, [isPlaying]);
+
+    if (isExpanded) {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  }, [isPlaying, isExpanded]);
+
   useEffect(() => {
     const audioElement = audioRef.current;
     if (audioElement == null) {
@@ -143,46 +148,43 @@ const ReproductorResponsive: React.FC<ReproductorProps> = ({ songs, onSongSelect
   };
 
   return (
-    <div className="w-[60%]">
+    <div className="my-5 flex w-[100%] justify-center">
       <audio ref={audioRef} />
       {isMobile ? (
+        // REPRODUCTOR PEQUEÑO
         <section
-          className={`bg-orange-200 ${
-            isExpanded ? 'h-[473px] w-[328px]' : 'h-[70px] w-[328px]'
-          } mb-20 rounded border-[1px]`}
+          className={`mx-[5%] bg-[#FFE1CC] ${
+            isExpanded ? 'h-[483px] w-full max-w-[360px]' : 'h-[64px] w-full max-w-[360px]'
+          } rounded border-[1px]`}
+          style={{ boxShadow: '0px 0px 6px 3px rgba(0,0,0,0.3)' }}
         >
-          <div className="flex flex-col items-center justify-center">
-            <div className="flex justify-end ">
-              <button
-                className={`flex justify-end bg-orange-200 ${isExpanded ? '' : 'hidden'}`}
-                onClick={toggleExpanded}
-              >
-                <BsChevronDown />
-              </button>
-            </div>
+          <div>
             {isExpanded ? (
-              <div className="flex flex-col items-center ">
-                <div className="mt-5">
-                  <Image className="h-[288px] w-[280px]" src={img} alt="img" />
+              <div className="flex flex-col items-center w-full">
+                <div className="h-[310px] w-[310px] cursor-pointer pt-8" onClick={toggleExpanded}>
+                  <Image className="object-cover w-full h-full" src={img} alt="img" />
                 </div>
-                <div className="mt-5 flex items-center justify-center">
+                <div className="flex items-center justify-center w-full gap-4 my-3">
                   <button className="mr-2">
-                    <Image src={rendom} alt="alt" className="mr-2 " />
+                    <Image src={random} alt="alt" className="mr-2 " />
                   </button>
                   <button className="mr-5" onClick={handlePreviousSong}>
                     <Image src={ant} alt="alt" className="" />
                   </button>
-                  <div className="flex h-[32px] w-[32px] items-center justify-center rounded-full border-[3px] border-orange-400 bg-orange-100 p-6 ">
+                  <button
+                    className="relative bottom-2 mt-4 h-[60px] w-[60px] rounded-full border-[2px] border-orange-500 bg-[#FFF0E6] shadow-md shadow-slate-500"
+                    onClick={handlePlayPause}
+                  >
                     {isPlaying ? (
-                      <button onClick={handlePlayPause}>
-                        <HiStop />
-                      </button>
+                      <div className="flex items-center justify-center">
+                        <TbPlayerPauseFilled />
+                      </div>
                     ) : (
-                      <button onClick={handlePlayPause}>
+                      <div className="flex items-center justify-center">
                         <TbPlayerPlayFilled />
-                      </button>
+                      </div>
                     )}
-                  </div>
+                  </button>
                   <button className="ml-5" onClick={handleNextSong}>
                     <Image src={next} alt="alt" className="" />
                   </button>
@@ -190,10 +192,12 @@ const ReproductorResponsive: React.FC<ReproductorProps> = ({ songs, onSongSelect
                     <Image src={repet} alt="alt" className="ml-2" />
                   </button>
                 </div>
-                <div className="flex items-center justify-center">
-                  <span>{formatTime(currentTime)}</span>
+                <div className="flex items-center justify-center gap-4 overflow-hidden">
+                  <div className="text-xs font-semibold text-zinc-700">
+                    <span>{formatTime(currentTime)}</span>
+                  </div>
                   <input
-                    className="w-[204px]"
+                    className="h-1 w-[204px] cursor-pointer appearance-none overflow-hidden rounded-lg bg-gray-300 outline outline-1 outline-gray-400"
                     type="range"
                     min={0}
                     max={duration}
@@ -201,41 +205,48 @@ const ReproductorResponsive: React.FC<ReproductorProps> = ({ songs, onSongSelect
                     step={0.01}
                     onChange={handleSeek}
                   />
-                  <span>{formatTime(duration)}</span>
+                  <div className="text-xs font-semibold text-zinc-700">
+                    <span>{formatTime(duration)}</span>
+                  </div>
                 </div>
-                <p className="mt-5">{songs[currentSongIndex].title}</p>
+                <div className="text-base font-medium text-black cursor-pointer mt-[-6px] w-full" onClick={toggleExpanded}>
+                  <p className="flex justify-center mt-5 text-center">{songs[currentSongIndex].title} - {songs[currentSongIndex].artista}</p>
+                </div>
               </div>
             ) : (
-              <div className="h-[70px] w-full  ">
-                <div className="relative bottom-3 right-3 w-[328px]">
-                  <button className="relative flex w-full justify-end " onClick={toggleExpanded}>
-                    <BsChevronUp className="bg-orange-200" />
-                  </button>
-                </div>
+              <div className="">
                 <div className="flex justify-between ">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 cursor-pointer" onClick={toggleExpanded}>
                     <div>
-                      <Image className="ml-2 h-[32px] w-[32px]" src={img} alt="img" />
+                      <Image className="m-[14px] h-[35px] w-[35px]" src={img} alt="img" />
                     </div>
-                    <span>{songs[currentSongIndex].title}</span>
                   </div>
-                  <div>
-                    <div className="mr-2 flex items-center rounded-full border-[2px] border-orange-500 p-2">
-                      {isPlaying ? (
-                        <button onClick={handlePlayPause}>
-                          <HiStop />
-                        </button>
-                      ) : (
-                        <button onClick={handlePlayPause}>
-                          <TbPlayerPlayFilled />
-                        </button>
-                      )}
+                  <div
+                    className="flex flex-col w-full ml-4 cursor-pointer"
+                    onClick={toggleExpanded}
+                  >
+                    <div className="mb-[-3px] mt-3 text-base font-medium text-black">
+                      {songs[currentSongIndex].title}
                     </div>
+                    <div className="text-[15px] font-medium text-zinc-700">
+                      {songs[currentSongIndex].artista}
+                    </div>
+                  </div>
+                  <div className="m-[14px] flex items-center rounded-full border-[2px] border-orange-500 bg-orange-100 p-2 shadow-md shadow-slate-500">
+                    {isPlaying ? (
+                      <button onClick={handlePlayPause}>
+                        <TbPlayerPauseFilled />
+                      </button>
+                    ) : (
+                      <button onClick={handlePlayPause}>
+                        <TbPlayerPlayFilled />
+                      </button>
+                    )}
                   </div>
                 </div>
-                <div className="flex items-center justify-start ">
+                <div className="mt-[-4px] flex">
                   <input
-                    className="w-[90%] "
+                    className="h-1 w-[100%] cursor-pointer appearance-none overflow-hidden rounded-lg bg-[#FFE1CC]"
                     type="range"
                     min={0}
                     max={duration}
@@ -250,79 +261,83 @@ const ReproductorResponsive: React.FC<ReproductorProps> = ({ songs, onSongSelect
         </section>
       ) : (
         // REPRODUCTOR GRANDE
-        <section className="flex h-[100px] w-[110%] flex-col items-center justify-center rounded-3xl border-2 border-orange-400 bg-orange-100">
+        <section
+          className="flex h-[100px] w-[70%] flex-col items-center justify-center rounded-3xl border-2 border-orange-500 bg-[#FFE1CC]"
+          style={{ boxShadow: '0px -10px 10px 0px rgba(0,0,0,0.2)' }}
+        >
           <div className="flex h-[52px] w-[206px] justify-evenly">
             {/* RANDOM */}
-            <button className="mr-2" onClick={handleNextSong}>
-              <Image src={rendom} alt="alt" className="relative top-5 text-[18px]" />
+            <button className="mr-[5%]" onClick={handleNextSong}>
+              <Image src={random} alt="alt" className="relative top-3 text-[18px]" />
             </button>
             {/* ANTERIOR */}
             <button onClick={handlePreviousSong}>
-              <Image src={ant} alt="alt" className="relative top-5 text-[18px]" />
+              <Image src={ant} alt="alt" className="relative top-3 text-[18px]" />
             </button>
             {/* PLAY / STOP */}
             <button
-              className="relative bottom-2 h-[60px] w-[60px] rounded-full border-[4px] border-orange-400 bg-orange-300"
+              className="relative bottom-2 h-[60px] w-[60px] rounded-full border-[2px] border-orange-500 bg-[#FFF0E6]"
               onClick={handlePlayPause}
+              style={{ boxShadow: '0px -10px 10px 0px rgba(0,0,0,0.2)' }}
             >
               {isPlaying ? (
                 <div className="flex items-center justify-center">
-                  <HiStop />
+                  <TbPlayerPauseFilled />
                 </div>
               ) : (
                 <div className="flex items-center justify-center">
-                  <TbPlayerPlayFilled className="text-[18px]" />
+                  <TbPlayerPlayFilled />
                 </div>
               )}
             </button>
             {/* SIGUIENTE */}
             <button onClick={handleNextSong}>
-              <Image src={next} alt="alt" className="relative top-5 text-[18px]" />
+              <Image src={next} alt="alt" className="relative top-3 text-[18px]" />
             </button>
             {/* REPETIR */}
-            <button className="ml-2">
-              <Image src={repet} alt="alt" className="relative top-5  text-[18px]" />
+            <button className="ml-[5%]">
+              <Image src={repet} alt="alt" className="relative top-3  text-[18px]" />
             </button>
           </div>
           {/* CONTENEDOR IMAGEN | RANGO REPR | RANGO VOL */}
           <div className="relative bottom-2 w-[100%]">
-            <div className="ml-10 flex items-center justify-center gap-3">
-              <div>
-                <Image className="h-[60px] w-[90px]" src={img} alt="img" />
+            <div className="flex items-center justify-center gap-3 ml-10">
+              <div className="ml-[-10px] mt-[-15px] flex h-[60px] w-[120px]">
+                <Image className="object-cover w-full h-full" src={img} alt="img" />
               </div>
-              <div className="jusify-center ml-[1%] flex">
+              <div className="jusify-center ml-[1%] mt-[-7px] flex text-sm font-semibold text-zinc-700">
                 <span className="">{formatTime(currentTime)}</span>
               </div>
-              <div className="flex w-[75%] justify-around">
+              <div className="mt-[-7px] flex w-full">
                 <input
-                  className="w-[100%]"
+                  className="w-full h-1 overflow-hidden bg-gray-300 rounded-lg appearance-none cursor-pointer outline outline-1 outline-gray-400"
                   type="range"
-                  min={0}
+                  min="0"
+                  step="0.1"
                   max={duration}
                   value={currentTime}
-                  step={0.01}
                   onChange={handleSeek}
                 />
               </div>
-              <div className="jusify-center ml-[1%] flex">
+              <div className="jusify-center ml-[1%] mt-[-7px] flex text-sm font-semibold text-zinc-700">
                 <span>{formatTime(duration)}</span>
               </div>
-              <div className="w-[25%]">
-                <div>
-                  <input
-                    className="w-[70%]"
-                    type="range"
-                    min={0}
-                    max={1}
-                    step={0.01}
-                    value={volume}
-                    onChange={handleVolumeChange}
-                  />
-                </div>
+              <div className="mt-[-7px] flex w-[25%]">
+                <input
+                  className="h-1 w-[70%] cursor-pointer appearance-none overflow-hidden rounded-lg bg-gray-300 outline outline-1 outline-gray-400"
+                  type="range"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  value={volume}
+                  onChange={handleVolumeChange}
+                />
               </div>
             </div>
           </div>
-          <p className="relative bottom-5">{songs[currentSongIndex].title}</p>
+          <div className="text-sm font-medium text-center text-black">
+            <p className="relative flex bottom-6">{songs[currentSongIndex].title}</p>
+          </div>
         </section>
       )}
     </div>

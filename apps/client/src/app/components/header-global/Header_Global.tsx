@@ -2,7 +2,6 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
-
 import bell from '@/app/assets/bell.png';
 import dw from '@/app/assets/dw.png';
 import exit from '@/app/assets/exit.png';
@@ -19,15 +18,15 @@ export default function HeaderGlobal() {
     <div>
       <header className="border-b-2 border-gray-400">
         <nav>
-          <div className="items-center justify-between px-4 pb-3  pt-3 md:flex md:items-center ">
+          <div className="items-center justify-between px-4 pt-3 pb-1 md:flex md:items-center">
             <div>
-              <div className="flex items-center justify-between ">
+              <div className="flex items-center justify-between">
                 <div className="flex">
-                  <Image className=" h-[54px] w-[353px]  px-1" src={logo} alt="logo" />{' '}
+                  <Image src={logo} alt="logo" />{' '}
                 </div>
                 <div className="md:hidden">
                   <button
-                    className="rounded-md p-2 text-white outline-none focus:border focus:border-gray-400"
+                    className="p-2 text-white rounded-md outline-none focus:border focus:border-gray-400"
                     onClick={() => {
                       setNavbar(!navbar);
                     }}
@@ -95,19 +94,38 @@ export default function HeaderGlobal() {
                       </main>
                     ) : (
                       <div className="flex items-center gap-8 pr-10">
-                        <Image
-                          src={dw}
-                          alt="descarga"
-                          className="h-[25px] w-[23px] cursor-pointer md:block"
-                        />
-                        <Image
-                          src={bell}
-                          alt="campana"
-                          className="h-[25px] w-[25px] cursor-pointer md:block"
-                        />
+                        <Image src={dw} alt="descarga" className="cursor-pointer md:block" />
+                        <Image src={bell} alt="campana" className="cursor-pointer md:block" />
                         <div className="relative">
-                          <div onClick={toggleMenu} className="flex cursor-pointer items-center">
-                            <Image src={user} alt="user" className="h-6 w-6 text-white md:block" />
+                          <div onClick={toggleMenu} className="flex items-center cursor-pointer">
+                            <Image src={user} alt="user" className="text-white md:block" />
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="12"
+                              height="11"
+                              viewBox="0 0 12 11"
+                              fill="none"
+                            >
+                              <g clip-path="url(#clip0_1315_3856)">
+                                <path
+                                  d="M10.0332 3.66699L5.5332 7.79199L1.0332 3.66699"
+                                  stroke="black"
+                                  stroke-width="1.08613"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                />
+                              </g>
+                              <defs>
+                                <clipPath id="clip0_1315_3856">
+                                  <rect
+                                    width="11"
+                                    height="11"
+                                    fill="white"
+                                    transform="translate(0.0332031)"
+                                  />
+                                </clipPath>
+                              </defs>
+                            </svg>
                           </div>
                           {isOpen && (
                             <div className="absolute right-0 z-10 mt-2 h-[160px] w-[284px]  border-2 border-orange-300 bg-white pl-2 pt-2 shadow-lg">

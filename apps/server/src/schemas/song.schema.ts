@@ -25,5 +25,7 @@ export class Song extends Document {
   date: Date;
   @Prop({ required: true })
   album: string;
+  @Prop()
+  src: string;
 }
 export const SongSchema = SchemaFactory.createForClass(Song);

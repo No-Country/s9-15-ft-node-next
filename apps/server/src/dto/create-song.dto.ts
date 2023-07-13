@@ -66,4 +66,6 @@ export class CreateSongDto {
   @IsOptional()
   @IsString()
   album: string;
+
+  src: string;
 }

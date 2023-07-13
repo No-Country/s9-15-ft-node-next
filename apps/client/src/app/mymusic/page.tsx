@@ -130,34 +130,34 @@ export default function Page() {
         <Menu />
 
         {songs.length > 0 ? (
-          <div className="flex w-[100%] flex-col">
-            <div className="overflow-x-auto " style={{ maxHeight: '75%' }}>
+          <div className="flex flex-col flex-grow">
+            <div className="overflow-x-auto " style={{ maxHeight: '70%' }}>
               <div className="inline-block w-full py-2 sm:px-6 lg:px-8">
-                <div className="overflow-hidden">
+                <div className="">
                   <table className="w-[100%]">
-                    <thead className="border-b bg-white">
+                    <thead className="bg-white border-b">
                       <tr>
                         <th
                           scope="col"
-                          className="pb-2 text-left text-sm font-medium text-gray-900"
+                          className="pb-2 text-sm font-medium text-left text-gray-900"
                         >
                           Nombre
                         </th>
                         <th
                           scope="col"
-                          className="pb-2 text-left text-sm font-medium text-gray-900"
+                          className="pb-2 text-sm font-medium text-left text-gray-900"
                         >
                           Artista
                         </th>
                         <th
                           scope="col"
-                          className="pb-2 text-left text-sm font-medium text-gray-900 "
+                          className="pb-2 text-sm font-medium text-left text-gray-900 "
                         >
                           Disco
                         </th>
                         <th
                           scope="col"
-                          className="pb-2 text-left text-sm font-medium text-gray-900"
+                          className="pb-2 text-sm font-medium text-left text-gray-900"
                         >
                           Duracion
                         </th>
@@ -172,7 +172,7 @@ export default function Page() {
                             handleSongSelect(index);
                           }}
                         >
-                          <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">
+                          <td className="px-3 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                             <div className="flex items-center gap-1">
                               {selectedSongIndex === index && (
                                 <td className="whitespace-nowrap  text-[8px] text-gray-900">
@@ -187,13 +187,13 @@ export default function Page() {
                               )}
                             </div>
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm font-light text-gray-900">
+                          <td className="px-3 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                             {song.artista}
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm font-light text-gray-900">
+                          <td className="px-3 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                             {song.disco}
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm font-light text-gray-900">
+                          <td className="px-3 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                             {song.duracion}
                           </td>
                         </tr>
@@ -209,7 +209,7 @@ export default function Page() {
             </nav>
           </div>
         ) : (
-          <div className="flex w-full items-center justify-center">
+          <div className="flex items-center justify-center w-full">
             <section className="flex flex-col items-center gap-10">
               <Image src={vector} alt="logo vector" />
               <h2 className="ANNoTienesMSicaEnTuListaDeReproducciN w-[449px] text-center text-[32px] font-semibold text-zinc-700">

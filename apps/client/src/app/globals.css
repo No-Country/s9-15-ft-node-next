@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* input[type="range"]::-webkit-slider-thumb {
+  background-color: rgb(85, 85, 85) !important;
+  width: 10px !important;
+  height: 4px !important;
+} */
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type='range']::-webkit-slider-thumb {
+    width: 10px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: rgb(85, 85, 85);
+    box-shadow: -405px 0 0 400px #605e5c;
+  }
+}
+
+#ReproductorSM {
+  background: rgb(255, 81, 0);
+  box-shadow: -405px 0 0 400px rgb(255, 81, 0);
+}

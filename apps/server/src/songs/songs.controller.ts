@@ -9,11 +9,18 @@ import {
   Put,
   Res,
   Query,
+  UseInterceptors,
+  UploadedFile,
+  BadRequestException,
 } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { CreateSongDto } from 'src/dto/create-song.dto';
 import { SongsService } from './songs.service';
 import { PaginationQueryDto } from 'src/dto/pagination-query.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
+import { v2 as cloudinary } from 'cloudinary';
+import { extname } from 'path';
 
 @ApiTags('Songs')
 @Controller('songs')
@@ -30,6 +37,9 @@ export class SongsController {
       return res.sendStatus(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+
+ 
 
   @ApiParam({ name: 'id', description: 'ID de la canción' })
   @ApiOperation({ summary: 'Obtener una canción por su id' })
@@ -49,10 +59,34 @@ export class SongsController {
         .json({ message: 'Internal server error' });
     }
   }
-
+  
+ // @UseInterceptors(
+  //   FileInterceptor('file', {
+  //     storage: new CloudinaryStorage({
+  //       cloudinary: cloudinary,
+  //       params: [{
+  //         folder: 'uploads', // Ruta en Cloudinary donde se almacenarán los archivos,
+  //         resource_type: 'video'
+  //       }],
+  //     }),
+  //     fileFilter: (req, file, callback) => {
+  //       const allowedExtensions = ['.mp3', '.mp4', '.jpg']; // Agrega las extensiones permitidas para archivos de audio
+  //       const fileExtension = extname(file.originalname).toLowerCase();
+  //       if (allowedExtensions.includes(fileExtension)) {
+  //         callback(null, true);
+  //       } else {
+  //         callback(new BadRequestException('El archivo debe ser un formato de audio válido'), false);
+  //       }
+  //     },
+  //   }),
+  // )
   @ApiOperation({ summary: 'Crear una nueva canción.' })
   @Post('/create')
-  async createSong(@Body() createSongDto: CreateSongDto, @Res() res) {
+  async createSong(
+    @UploadedFile() file: Express.Multer.File,
+    @Body() createSongDto: CreateSongDto,
+    @Res() res,
+  ) {
     try {
       const {
         name,
@@ -64,7 +98,13 @@ export class SongsController {
         image,
         date,
         album,
+        src,
       } = createSongDto;
+
+      // const archivoURL = file.path;
+      // console.log(archivoURL)
+      // console.log(typeof archivoURL)
+
       const song = await this.songsService.createSong({
         name,
         duration,
@@ -74,8 +114,10 @@ export class SongsController {
         genre,
         image,
         date,
+        src,
         album,
       });
+
       return res.status(HttpStatus.OK).json({ song });
     } catch (err) {
       console.log(err);
