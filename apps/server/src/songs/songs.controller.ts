@@ -38,9 +38,6 @@ export class SongsController {
     }
   }
 
-
- 
-
   @ApiParam({ name: 'id', description: 'ID de la canción' })
   @ApiOperation({ summary: 'Obtener una canción por su id' })
   @Get(':id')
@@ -59,8 +56,8 @@ export class SongsController {
         .json({ message: 'Internal server error' });
     }
   }
-  
- // @UseInterceptors(
+
+  // @UseInterceptors(
   //   FileInterceptor('file', {
   //     storage: new CloudinaryStorage({
   //       cloudinary: cloudinary,

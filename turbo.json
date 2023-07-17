@@ -21,7 +21,7 @@
     "build": {
       "dependsOn": ["^build"],
       "env": ["ANALYZE", "GITHUB_REPOSITORY"],
-      "outputs": [".next/**", "dist/**"]
+      "outputs": ["dist/**", "umd/**", "build/**", ".next"]
     },
     "storybook:dev": {
       "cache": false,

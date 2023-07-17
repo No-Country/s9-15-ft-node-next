@@ -2,6 +2,7 @@
 'use client';
 import Image from 'next/image';
 import { useState } from 'react';
+
 import bell from '@/app/assets/bell.png';
 import dw from '@/app/assets/dw.png';
 import exit from '@/app/assets/exit.png';
@@ -18,7 +19,7 @@ export default function HeaderGlobal() {
     <div>
       <header className="border-b-2 border-gray-400">
         <nav>
-          <div className="items-center justify-between px-4 pt-3 pb-1 md:flex md:items-center">
+          <div className="items-center justify-between px-4 pb-1 pt-3 md:flex md:items-center">
             <div>
               <div className="flex items-center justify-between">
                 <div className="flex">
@@ -26,7 +27,7 @@ export default function HeaderGlobal() {
                 </div>
                 <div className="md:hidden">
                   <button
-                    className="p-2 text-white rounded-md outline-none focus:border focus:border-gray-400"
+                    className="rounded-md p-2 text-white outline-none focus:border focus:border-gray-400"
                     onClick={() => {
                       setNavbar(!navbar);
                     }}
@@ -97,7 +98,7 @@ export default function HeaderGlobal() {
                         <Image src={dw} alt="descarga" className="cursor-pointer md:block" />
                         <Image src={bell} alt="campana" className="cursor-pointer md:block" />
                         <div className="relative">
-                          <div onClick={toggleMenu} className="flex items-center cursor-pointer">
+                          <div onClick={toggleMenu} className="flex cursor-pointer items-center">
                             <Image src={user} alt="user" className="text-white md:block" />
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -106,13 +107,13 @@ export default function HeaderGlobal() {
                               viewBox="0 0 12 11"
                               fill="none"
                             >
-                              <g clip-path="url(#clip0_1315_3856)">
+                              <g clipPath="url(#clip0_1315_3856)">
                                 <path
                                   d="M10.0332 3.66699L5.5332 7.79199L1.0332 3.66699"
                                   stroke="black"
-                                  stroke-width="1.08613"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
+                                  strokeWidth="1.08613"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                 />
                               </g>
                               <defs>

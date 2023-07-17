@@ -19,7 +19,8 @@
     "fix:prettier": "prettier --plugin-search-dir=. --write .",
     "fix": "run-s fix:*",
     "prepare": "husky install",
-    "lint-error": " prettier --write  . && eslint . --fix"
+    "lint-error": " prettier --write  . && eslint . --fix",
+    "start": "turbo run start --concurrency 20"
   },
   "lint-staged": {
     "*": "prettier --ignore-unknown --write",

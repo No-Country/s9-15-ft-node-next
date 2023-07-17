@@ -9,6 +9,8 @@ interface PostLoginResult {
 
 const usePostLogin = (postRoute: string): ((data: LoginData) => Promise<PostLoginResult>) => {
   return async (data: LoginData): Promise<PostLoginResult> => {
+    console.log('[DATA-LOGIN-LEGACY]', data);
+    console.log('[ROUTER-LOGIN-LEGACY]', postRoute);
     try {
       const response = await fetch(postRoute, {
         method: 'POST',
@@ -19,7 +21,7 @@ const usePostLogin = (postRoute: string): ((data: LoginData) => Promise<PostLogi
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-
+      console.log('[LOGIN EXITOSO]');
       return { ok: true };
     } catch (error) {
       console.error('There was a problem with the fetch operation:', error);

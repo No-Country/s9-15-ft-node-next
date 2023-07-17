@@ -5,6 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   const config = new DocumentBuilder()
     .setTitle('Soundwave')
     .setDescription('The Music API description')
@@ -21,7 +22,6 @@ async function bootstrap() {
       },
     }),
   );
-
   await app.listen(4000);
 }
 bootstrap();
