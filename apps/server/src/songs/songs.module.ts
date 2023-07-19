@@ -8,11 +8,10 @@ import { UserController } from 'src/user/user.controller';
 import { UserService } from 'src/user/user.service';
 import { User, UserSchema } from 'src/schemas/user.schema';
 
-
 @Module({
   providers: [SongsService, UserService],
   controllers: [SongsController, UserController],
-  imports: [ 
+  imports: [
     ConfigModule,
     MongooseModule.forFeature([
       { name: Song.name, schema: SongSchema },

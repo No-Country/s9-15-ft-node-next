@@ -16,7 +16,7 @@ import { ConfigService } from '@nestjs/config';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { v2 as cloudinary } from 'cloudinary';
-import { diskStorage } from 'multer';
+// import { diskStorage, memoryStorage } from 'multer';
 import { GetArtirtsFilterDto } from 'src/dto/get-artists-filter.dto';
 import { PaginationQueryDto } from 'src/dto/pagination-query.dto';
 import { UpdateUserDto } from 'src/dto/update-user.dto';
@@ -194,27 +194,16 @@ export class UserController {
   }
 
   @Post(':id/profile-photo')
-  @UseInterceptors(
-    FileInterceptor('file', {
-      storage: diskStorage({
-        destination: './uploads', // Directorio de destino para guardar los archivos
-        filename: (req, file, cb) => {
-          const uniqueSuffix = `${Date.now()}-${Math.round(
-            Math.random() * 1e9,
-          )}`;
-          cb(null, `${file.fieldname}-${uniqueSuffix}`);
-        },
-      }),
-    }),
-  )
+  @UseInterceptors(FileInterceptor('file'))
   async uploadProfilePhoto(
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
     @Res() res,
   ) {
     try {
-      const result = await cloudinary.uploader.upload(file.path);
-      const profilePhotoUrl = result.secure_url;
+      console.log(file);
+      const profilePhotoUrl = await this.songService.uploadFile(file);
+      console.log(profilePhotoUrl);
 
       const updatedUser = await this.userService.updateProfilePhotoUrl(
         id,
@@ -226,7 +215,7 @@ export class UserController {
           .status(HttpStatus.NOT_FOUND)
           .json({ message: 'User not found' });
       }
-
+      await updatedUser.save();
       return res.status(HttpStatus.OK).json(updatedUser);
     } catch (error) {
       console.error(error);

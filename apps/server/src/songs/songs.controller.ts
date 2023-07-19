@@ -11,7 +11,7 @@ import {
   Res,
   UploadedFiles,
   UseInterceptors,
-  UploadedFile,
+  // UploadedFile,
 } from '@nestjs/common';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
@@ -20,16 +20,13 @@ import { PaginationQueryDto } from 'src/dto/pagination-query.dto';
 import { SongsService } from './songs.service';
 import { UserService } from 'src/user/user.service';
 
-
 @ApiTags('Songs')
 @Controller('songs')
 export class SongsController {
-
   constructor(
     private songsService: SongsService,
     private userService: UserService,
   ) {}
-
 
   @ApiOperation({ summary: 'Obtener todas las canciones' })
   @Get()
@@ -61,14 +58,12 @@ export class SongsController {
     }
   }
 
-
   @UseInterceptors(
     FileFieldsInterceptor([
       { name: 'song', maxCount: 1 },
       { name: 'image', maxCount: 1 },
     ]),
   )
-
   @ApiOperation({ summary: 'Crear una nueva canción.' })
   @Post('/create')
   async createSong(
@@ -90,7 +85,7 @@ export class SongsController {
       const fileUrls = await Promise.all(filePromises);
 
       function getFileType(link: string): string {
-        const extension: string = link.split('.').pop()!;
+        const extension: string = link.split('.').pop();
         return extension.toLowerCase();
       }
 
@@ -122,17 +117,8 @@ export class SongsController {
       const { songLink, imageLink } = separateLinks(fileUrls);
 
       console.log('arreglos de imagenes', fileUrls);
-      const {
-        name,
-        duration,
-        user,
-        coArtist,
-        price,
-        genre,
-        image,
-        date,
-        album,
-      } = createSongDto;
+      const { name, duration, user, coArtist, price, genre, date, album } =
+        createSongDto;
 
       const song = await this.songsService.createSong({
         name,
@@ -151,7 +137,6 @@ export class SongsController {
       usuario.songsUplodaded.push(song._id);
       await this.userService.updateById(user, usuario);
       return res.status(HttpStatus.OK).json({ song });
-
     } catch (err) {
       console.log(err);
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).json(err);
