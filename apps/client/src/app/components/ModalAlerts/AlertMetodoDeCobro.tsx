@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 'use client';
-import React from 'react';
-import { MouseEvent } from 'react';
-import Alerta from '@/app/assets/Alerta.png';
 import Image from 'next/image';
+import React, { type MouseEvent } from 'react';
+
+import Alerta from '@/app/assets/Alerta.png';
 
 interface ModalAlertProps {
   visible: boolean;
@@ -24,7 +24,7 @@ export default function AlertMetodoCobro({ visible, onClose }: ModalAlertProps) 
 
   return (
     <>
-      <div className="flex items-center justify-center bg-black bg-opacity-25 modal backdrop-blur-sm">
+      <div className="modal flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm">
         <div className="inline-flex h-[294px] w-[264px] flex-col items-center justify-center gap-4 border-2 border-orange-500 bg-white px-6 pb-10 pt-10 shadow md:h-[251px] md:w-[432px] md:pb-7">
           <Image src={Alerta} alt="Error en el pago"></Image>
           <div className="self-stretch text-center text-lg font-semibold text-[#FF3402] md:text-2xl">

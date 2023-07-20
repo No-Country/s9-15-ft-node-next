@@ -213,7 +213,7 @@ export default function PlayList() {
 
   return (
     <>
-      <div className="flex justify-between m-8">
+      <div className="m-8 flex justify-between">
         <div className="hidden w-auto md:block">
           <div className="text-[32px] font-bold leading-normal text-orange-500">Mi Música</div>
         </div>
@@ -225,8 +225,8 @@ export default function PlayList() {
             <div className="inline-block w-full px-4 py-2">
               <div className="">
                 <table className="w-[100%]">
-                  <thead className="sticky top-0 bg-white border-b">
-                    <tr className="h-12 text-left border-b border-zinc-700">
+                  <thead className="sticky top-0 border-b bg-white">
+                    <tr className="h-12 border-b border-zinc-700 text-left">
                       <th scope="col" className="p-[11px]">
                         Nombre
                       </th>
@@ -316,7 +316,7 @@ export default function PlayList() {
           </nav>
         </div>
       ) : (
-        <div className="flex items-center justify-center w-full">
+        <div className="flex w-full items-center justify-center">
           <section className="flex flex-col items-center gap-10">
             <Image src={vector} alt="logo vector" />
             <h2 className="ANNoTienesMSicaEnTuListaDeReproducciN w-[449px] text-center text-[32px] font-semibold text-zinc-700">

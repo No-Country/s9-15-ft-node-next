@@ -54,9 +54,7 @@ export class SongsService {
     }
   }
 
-
   async uploadFile(file: Express.Multer.File): Promise<string> {
- 
     try {
       const result = await new Promise<string>((resolve, reject) => {
         cloudinary.uploader
@@ -97,6 +95,5 @@ export class SongsService {
       );
     }
     return songs;
-
   }
 }

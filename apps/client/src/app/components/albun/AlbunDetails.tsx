@@ -7,11 +7,7 @@ import { FaPlay } from 'react-icons/fa';
 import { GoKebabHorizontal } from 'react-icons/go';
 import { IoIosPodium } from 'react-icons/io';
 
-
-
-
 import albun from '@/app/assets/landingpage/p.jpg';
-
 
 import { ButtonCreate } from '../Buttons/seccion/Button_Create';
 interface Song {
@@ -123,7 +119,6 @@ export default function AlbunDetails() {
   };
   return (
     <div className="mt-20">
-
       <div className="px-5">
         <section className="flex gap-5 ">
           <div className="w-[206px] ">
@@ -164,7 +159,6 @@ export default function AlbunDetails() {
                             Ventas
                           </th>
                           <th scope="col" className="p-[11px]"></th>
-
                         </tr>
                       </thead>
                       <tbody>
@@ -178,11 +172,7 @@ export default function AlbunDetails() {
                               handleSongSelect(index);
                             }}
                           >
-
-                            <td className="px-3 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
-
-
-
+                            <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">
                               <div className="flex items-center gap-1">
                                 {selectedSongIndex === index && (
                                   <td className="text-[8px]">

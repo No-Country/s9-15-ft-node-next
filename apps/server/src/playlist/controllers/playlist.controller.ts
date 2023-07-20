@@ -152,8 +152,6 @@ export class PlaylistController {
     const fileUrl = await this.playlistService.uploadFile(file);
     console.log(fileUrl);
     return fileUrl;
-
- 
   }
 
   @Delete('')

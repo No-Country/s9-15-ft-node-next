@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
 'use client';
 import { useEffect, useState } from 'react';
+
 import ReproductorP from '@/app/components/reprodutorpequeño/ReproductorP';
+
 import { ButtonCuatro } from '../mobile/buttons/Button_cuatro';
-import { useMedia } from 'use-media';
 interface Song {
   id: number;
   title: string;
@@ -135,11 +136,11 @@ export default function Topdies() {
 
   return (
     <div>
-      <h2 className="md:ml-7 ml-6 text-xl font-semibold leading-normal text-zinc-700 md:text-[32px]">
+      <h2 className="ml-6 text-xl font-semibold leading-normal text-zinc-700 md:ml-7 md:text-[32px]">
         Top 10 - Lo más vendido por nuestros artistas
       </h2>
       <div className="w-full">
-        <section className={`ml-8 flex flex-wrap pb-7 pt-14 md:flex-row md:gap-4 md:items-center`}>
+        <section className={`ml-8 flex flex-wrap pb-7 pt-14 md:flex-row md:items-center md:gap-4`}>
           <div className="md:w-[49%]">
             {firstHalf.map((song, index) => (
               <div key={index} className={`flex-grow`}>
@@ -156,7 +157,7 @@ export default function Topdies() {
           </div>
         </section>
         {!showAll && isSmallScreen && (
-          <div onClick={handleShowMore} className="flex justify-center mt-4">
+          <div onClick={handleShowMore} className="mt-4 flex justify-center">
             <ButtonCuatro>VER MÁS</ButtonCuatro>
           </div>
         )}

@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
-import { useState, useEffect } from 'react';
-import CardAlbum from './CardAlbum';
+import { useEffect, useState } from 'react';
+
 import { ButtonCuatro } from '../mobile/buttons/Button_cuatro';
+import CardAlbum from './CardAlbum';
 
 export default function Albumes() {
   // Estado para almacenar la página actual
@@ -89,9 +91,9 @@ export default function Albumes() {
       setCurrentPage(currentPage + 1);
     }
   };
-  
+
   return (
-    <div className="flex-grow mt-5 mb-10 ml-5 overflow-auto">
+    <div className="mb-10 ml-5 mt-5 flex-grow overflow-auto">
       <div className="flex py-5 pl-[5px] md:pl-[8px]">
         <div className="text-xl font-semibold leading-normal text-zinc-700 lg:text-[32px]">
           Lo nuevo en álbums
@@ -112,7 +114,7 @@ export default function Albumes() {
               } ${hasPreviousPage ? 'cursor-pointer' : 'cursor-not-allowed'}`}
               onClick={handlePreviousPage}
             >
-              <div className="text-base font-semibold leading-none text-black uppercase">&lt;</div>
+              <div className="text-base font-semibold uppercase leading-none text-black">&lt;</div>
             </div>
             {/* Renderización de los números de página */}
             {generatePageNumbers().map((pageNumber) => (
@@ -127,7 +129,7 @@ export default function Albumes() {
                   setCurrentPage(pageNumber);
                 }}
               >
-                <div className="text-base font-semibold leading-none text-black uppercase">
+                <div className="text-base font-semibold uppercase leading-none text-black">
                   {pageNumber}
                 </div>
               </div>
@@ -139,12 +141,12 @@ export default function Albumes() {
               } ${hasNextPage ? 'cursor-pointer' : 'cursor-not-allowed'}`}
               onClick={handleNextPage}
             >
-              <div className="text-base font-semibold leading-none text-black uppercase">&gt;</div>
+              <div className="text-base font-semibold uppercase leading-none text-black">&gt;</div>
             </div>
           </div>
         </div>
       ) : (
-        <div onClick={handleShowMore} className="flex justify-center mt-4">
+        <div onClick={handleShowMore} className="mt-4 flex justify-center">
           <ButtonCuatro>DESCUBRE MÁS ARTISTAS</ButtonCuatro>
         </div>
       )}

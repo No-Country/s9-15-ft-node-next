@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 'use client';
-import React from 'react';
-import { MouseEvent } from 'react';
-import Alerta from '@/app/assets/Alerta.png';
 import Image from 'next/image';
+import React, { type MouseEvent } from 'react';
+
+import Alerta from '@/app/assets/Alerta.png';
 
 interface ModalAlertProps {
   visible: boolean;
@@ -15,7 +15,7 @@ export default function AlertPagoError({ visible, onClose }: ModalAlertProps) {
     const { id } = e.currentTarget;
     if (id === 'cancelar') {
       onClose();
-    } else if (id === 'reintentar'){
+    } else if (id === 'reintentar') {
       onClose();
     }
   };
@@ -24,10 +24,10 @@ export default function AlertPagoError({ visible, onClose }: ModalAlertProps) {
 
   return (
     <>
-      <div className="flex items-center justify-center bg-black bg-opacity-25 modal backdrop-blur-sm">
-        <div className="inline-flex h-[278px] w-[264px] flex-col items-center justify-center gap-4 border-2 border-orange-500 bg-white px-6 pb-10 pt-10 shadow md:pb-7 md:h-[251px] md:w-[432px]">
+      <div className="modal flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm">
+        <div className="inline-flex h-[278px] w-[264px] flex-col items-center justify-center gap-4 border-2 border-orange-500 bg-white px-6 pb-10 pt-10 shadow md:h-[251px] md:w-[432px] md:pb-7">
           <Image src={Alerta} alt="Error en el pago"></Image>
-          <div className="self-stretch text-lg font-semibold text-center text-[#FF3402] md:text-2xl">
+          <div className="self-stretch text-center text-lg font-semibold text-[#FF3402] md:text-2xl">
             Hubo un error con el pago
           </div>
           <div className="flex h-[104px] flex-col items-center justify-center gap-2 self-stretch">

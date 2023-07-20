@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 'use client';
-import React from 'react';
-import { MouseEvent } from 'react';
-import Check from '@/app/assets/CheckGreen.png';
 import Image from 'next/image';
+import React, { type MouseEvent } from 'react';
+
+import Check from '@/app/assets/CheckGreen.png';
 
 interface ModalAlertProps {
   visible: boolean;
@@ -15,7 +15,7 @@ export default function AlertPagoExitoso({ visible, onClose }: ModalAlertProps) 
     const { id } = e.currentTarget;
     if (id === 'salir') {
       onClose();
-    } else if (id === 'musica'){
+    } else if (id === 'musica') {
       onClose();
     }
   };
@@ -24,10 +24,10 @@ export default function AlertPagoExitoso({ visible, onClose }: ModalAlertProps) 
 
   return (
     <>
-      <div className="flex items-center justify-center bg-black bg-opacity-25 modal backdrop-blur-sm">
-        <div className="inline-flex h-[278px] w-[264px] flex-col items-center justify-center gap-4 border-2 border-orange-500 bg-white px-6 pb-10 pt-10 shadow md:pb-7 md:h-[251px] md:w-[432px]">
+      <div className="modal flex items-center justify-center bg-black bg-opacity-25 backdrop-blur-sm">
+        <div className="inline-flex h-[278px] w-[264px] flex-col items-center justify-center gap-4 border-2 border-orange-500 bg-white px-6 pb-10 pt-10 shadow md:h-[251px] md:w-[432px] md:pb-7">
           <Image src={Check} alt="Compra exitosa"></Image>
-          <div className="self-stretch text-lg font-semibold text-center text-zinc-700 md:text-2xl">
+          <div className="self-stretch text-center text-lg font-semibold text-zinc-700 md:text-2xl">
             Tu compra se realizó con éxito
           </div>
           <div className="flex h-[104px] flex-col items-center justify-center gap-2 self-stretch">

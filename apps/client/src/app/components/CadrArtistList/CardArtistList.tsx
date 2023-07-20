@@ -1,9 +1,11 @@
 'use client';
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import logoMarketPlace from '@/app/assets/homePage/logoMarketPlace.png';
-import { ButtonCuatro } from '../mobile/buttons/Button_cuatro';
+
 import Buscador from '../Buscador/Buscador';
+import { ButtonCuatro } from '../mobile/buttons/Button_cuatro';
 import CardArtist from './CardArtist';
 
 export default function CardArtistList() {
@@ -107,7 +109,13 @@ export default function CardArtistList() {
         </div>
       </div>
       {/* Renderización de los componentes CardArtist correspondientes a la página actual */}
-      <div className={isMediumScreen && !showAll ? `h-[181px] pl-1 w-[380px] overflow-x-scroll whitespace-nowrap` : `md:h-[485px] md:pl-3 md:w-full pl-6 md:overflow-x-auto md:whitespace-normal`}>
+      <div
+        className={
+          isMediumScreen && !showAll
+            ? `h-[181px] w-[380px] overflow-x-scroll whitespace-nowrap pl-1`
+            : `pl-6 md:h-[485px] md:w-full md:overflow-x-auto md:whitespace-normal md:pl-3`
+        }
+      >
         {renderCardArtists()}
       </div>
       {showAll ? (
@@ -121,7 +129,7 @@ export default function CardArtistList() {
               } ${hasPreviousPage ? 'cursor-pointer' : 'cursor-not-allowed'}`}
               onClick={handlePreviousPage}
             >
-              <div className="text-base font-semibold leading-none text-black uppercase">&lt;</div>
+              <div className="text-base font-semibold uppercase leading-none text-black">&lt;</div>
             </div>
             {/* Renderización de los números de página */}
             {generatePageNumbers().map((pageNumber) => (
@@ -136,7 +144,7 @@ export default function CardArtistList() {
                   setCurrentPage(pageNumber);
                 }}
               >
-                <div className="text-base font-semibold leading-none text-black uppercase">
+                <div className="text-base font-semibold uppercase leading-none text-black">
                   {pageNumber}
                 </div>
               </div>
@@ -148,12 +156,12 @@ export default function CardArtistList() {
               } ${hasNextPage ? 'cursor-pointer' : 'cursor-not-allowed'}`}
               onClick={handleNextPage}
             >
-              <div className="text-base font-semibold leading-none text-black uppercase">&gt;</div>
+              <div className="text-base font-semibold uppercase leading-none text-black">&gt;</div>
             </div>
           </div>
         </div>
       ) : (
-        <div onClick={handleShowMore} className="flex justify-center mt-4">
+        <div onClick={handleShowMore} className="mt-4 flex justify-center">
           <ButtonCuatro>DESCUBRE MÁS</ButtonCuatro>
         </div>
       )}

@@ -3,6 +3,7 @@ import HeaderGlobal from '@/app/components/header-global/Header_Global';
 import Menu from '@/app/components/menu/Menu';
 import Top from '@/app/components/top10/Topdies';
 import { useStore } from '@/app/store';
+
 import CardArtistList from '../components/CadrArtistList/CardArtistList';
 
 function home() {
@@ -12,12 +13,14 @@ function home() {
       <HeaderGlobal />
       <div className="flex">
         <Menu />
-        <div className="flex flex-col justify-center flex-grow">
+        <div className="flex flex-grow flex-col justify-center">
           <CardArtistList />
-          <div className="h-px mx-4 my-10 bg-black"></div>
+          <div className="mx-4 my-10 h-px bg-black"></div>
           <Top />
           <Albumes />
-          <div className="ml-7 mb-3 text-[11px]">© 2023 SoundWave | Todos los Derechos Reservados</div>
+          <div className="mb-3 ml-7 text-[11px]">
+            © 2023 SoundWave | Todos los Derechos Reservados
+          </div>
         </div>
       </div>
     </>

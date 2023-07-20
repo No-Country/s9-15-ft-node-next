@@ -8,19 +8,19 @@ CardAlbum.propTypes = {
 export default function CardAlbum({ index }: { index: number }) {
   return (
     <>
-      <div className="m-[0.8%] inline-flex md:w-[206px] md:h-[319px] h-[261px] w-[156px] flex-col items-start justify-start gap-4">
+      <div className="m-[0.8%] inline-flex h-[261px] w-[156px] flex-col items-start justify-start gap-4 md:h-[319px] md:w-[206px]">
         <Image
           alt="tampa del album"
-          className="md:h-52 md:w-[206px] rounded-[2.94px]"
+          className="rounded-[2.94px] md:h-52 md:w-[206px]"
           src="https://via.placeholder.com/206x208"
           width="156"
           height="261"
         />
-        <div className="md:h-[49px] md:w-[206px] h-10 w-[156px]">
-          <div className="left-0 top-0 w-[156px] text-base md:text-2xl font-semibold text-zinc-700">
+        <div className="h-10 w-[156px] md:h-[49px] md:w-[206px]">
+          <div className="left-0 top-0 w-[156px] text-base font-semibold text-zinc-700 md:text-2xl">
             Nombre Artista
           </div>
-          <div className="left-0 md:top-[27px] top-[18px] w-[156px] md:text-xl text-sm font-medium text-neutral-500">
+          <div className="left-0 top-[18px] w-[156px] text-sm font-medium text-neutral-500 md:top-[27px] md:text-xl">
             Nombre Álbum
           </div>
         </div>

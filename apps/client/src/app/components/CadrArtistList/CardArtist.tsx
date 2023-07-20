@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import LikeTransparent from '@/app/assets/Seguir-Like-Transparent.png';
+
 import LikeOrange from '@/app/assets/Seguir-Like-Orange.png';
+import LikeTransparent from '@/app/assets/Seguir-Like-Transparent.png';
 interface CardArtistProps {
   index?: number;
 }
@@ -20,8 +21,8 @@ export default function CardArtist({ index = 0 }: CardArtistProps) {
 
   return (
     <>
-      <div className="m-[1%] md:m-[0.7%] inline-flex cursor-pointer flex-col items-start justify-start gap-2 rounded-2xl border border-zinc-700 px-4 py-6 md:w-[206px] h-[157px] w-[156px] md:h-[213px]">
-        <div className="inline-flex items-center self-stretch justify-between gap-2">
+      <div className="m-[1%] inline-flex h-[157px] w-[156px] cursor-pointer flex-col items-start justify-start gap-2 rounded-2xl border border-zinc-700 px-4 py-6 md:m-[0.7%] md:h-[213px] md:w-[206px]">
+        <div className="inline-flex items-center justify-between gap-2 self-stretch">
           <Image
             alt="imagen artista"
             className="rounded-full"
@@ -43,7 +44,7 @@ export default function CardArtist({ index = 0 }: CardArtistProps) {
           </div>
           <div className="md:h-px md:w-[171px] md:bg-black"></div>
         </div>
-        <div className="md:h-[106px] h-0 w-0 text-transparent md:w-[171px] md:text-xs md:font-normal md:leading-[14px] md:text-zinc-700">
+        <div className="h-0 w-0 text-transparent md:h-[106px] md:w-[171px] md:text-xs md:font-normal md:leading-[14px] md:text-zinc-700">
           <p className="m-0 line-clamp-4">
             Breve descripción del artista Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Accusantium deleniti officia perferendis vel reprehenderit nisi laboriosam facere
