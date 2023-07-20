@@ -1,10 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-// Se ha desactivado el eslint de tipos porque me lansaba error el staticImages de nextjs
 'use client';
+import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
+import { type SubmitHandler, useForm } from 'react-hook-form';
+import * as yup from 'yup';
 
 import btnApple from '@/app/assets/auth/Apple.svg';
 import btnFacebook from '@/app/assets/auth/Facebook.svg';
@@ -16,23 +18,42 @@ import logo from '@/app/assets/landingpage/soundwave.png';
 
 import usePostLogin from './hooks/usePostLogin';
 
+interface FormValues {
+  email: string;
+  password: string;
+}
+
 export default function FormLogin() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
   const postRoute = 'http://localhost:4000/auth-jwt/login';
   const postLogin = usePostLogin(postRoute);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsSubmitting(true);
+  const schema = yup.object().shape({
+    email: yup
+      .string()
+      .required('El correo electrónico es obligatorio')
+      .email('Ingresa un correo electrónico válido'),
+    password: yup
+      .string()
+      .required('La contraseña es obligatoria')
+      .matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{5,}$/,
+        'La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial'
+      ),
+  });
 
-    const data = {
-      email,
-      password,
-    };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    setIsSubmitting(true);
 
     const result = await postLogin(data);
 
@@ -41,17 +62,7 @@ export default function FormLogin() {
     if (result.ok) {
       // hacer algo si la solicitud es exitosa
     } else {
-      setError(new Error('There was a problem submitting the form.'));
-    }
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    if (name === 'email') {
-      setEmail(value);
-    } else if (name === 'password') {
-      setPassword(value);
+      setError(new Error('Algo ha pasado, vuelvalo ha intentar mas tarde'));
     }
   };
 
@@ -63,14 +74,12 @@ export default function FormLogin() {
         <p className="text-center font-semibold text-black md:pt-[57px] md:text-[24px] ">
           Iniciar Sesión
         </p>
-        <form onSubmit={handleSubmit} className="md:pt-[46px] ">
+        <form onSubmit={handleSubmit(onSubmit)} className="md:pt-[46px] ">
           <div className="relative md:mb-4">
             <input
               type="email"
               id="email"
-              name="email"
-              value={email}
-              onChange={handleChange}
+              {...register('email')}
               className="border-1 peer block w-full appearance-none rounded border-neutral-400 bg-transparent bg-white px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-orange-500 focus:outline-none focus:ring-0 "
               placeholder=" "
             />
@@ -80,14 +89,15 @@ export default function FormLogin() {
             >
               Correo electrónico
             </label>
+            {errors.email != null && (
+              <p className="my-1 text-sm text-red-500">{errors.email.message}</p>
+            )}
           </div>
           <div className="relative md:mb-4">
             <input
               type={visible ? 'text' : 'password'}
               id="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
+              {...register('password')}
               className="border-1 peer block w-full appearance-none rounded border-neutral-400 bg-transparent bg-white px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-orange-500 focus:outline-none focus:ring-0 "
               placeholder=" "
             />
@@ -119,6 +129,9 @@ export default function FormLogin() {
                   setVisible(true);
                 }}
               />
+            )}
+            {errors.password != null && (
+              <p className="text-sm text-red-500">{errors.password.message}</p>
             )}
           </div>
           <button

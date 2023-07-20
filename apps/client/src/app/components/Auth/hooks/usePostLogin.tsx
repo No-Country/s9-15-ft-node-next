@@ -7,27 +7,32 @@ interface PostLoginResult {
   ok: boolean;
 }
 
-const usePostLogin = (postRoute: string): ((data: LoginData) => Promise<PostLoginResult>) => {
-  return async (data: LoginData): Promise<PostLoginResult> => {
-    console.log('[DATA-LOGIN-LEGACY]', data);
-    console.log('[ROUTER-LOGIN-LEGACY]', postRoute);
+const usePostLogin =
+  (postRoute: string) =>
+  async (data: LoginData): Promise<PostLoginResult> => {
+    let response: Response | null = null;
+
     try {
-      const response = await fetch(postRoute, {
+      response = await fetch(postRoute, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(data),
       });
 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        throw new Error('No hay un ok');
       }
-      console.log('[LOGIN EXITOSO]');
+
+      console.log('[LOGIN SUCCESS]');
       return { ok: true };
     } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
+      const errorMessage = response != null ? await response.text() : 'No hay mensaje';
+      console.error('El error de fetch operacion es:', error);
+      console.error('El mensaje de server es:', errorMessage);
       return { ok: false };
     }
   };
-};
 
 export default usePostLogin;
