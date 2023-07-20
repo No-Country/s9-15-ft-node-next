@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { CreatePlaylistDto } from 'src/dto/dto-playlist/create-playlist.dto';
 import { UpdatePlaylistDto } from 'src/dto/dto-playlist/update-playlist.dto';
 import { Playlist, PlaylistDocument } from 'src/schemas/playlist.schema';
+import { v2 as cloudinary } from 'cloudinary';
 
 @Injectable()
 export class PlaylistService {
@@ -44,5 +45,44 @@ export class PlaylistService {
         new: true,
       })
       .populate({ path: 'songs', model: 'Song' });
+  }
+
+  async uploadFile(file: Express.Multer.File): Promise<string> {
+    // try {
+    //   console.log('result')
+    //   console.log(file)
+    //   const result = await cloudinary.uploader.upload(file.path);
+    //   console.log(result)
+    //   // Aquí puedes realizar acciones adicionales, como guardar la URL en la base de datos
+    //   return result.secure_url; // Retorna la URL del archivo subido
+    // } catch (error) {
+    //   // Maneja los errores de carga de archivos aquí
+    //   return (error);
+    // }
+
+    try {
+      const result = await new Promise<string>((resolve, reject) => {
+        cloudinary.uploader
+          .upload_stream(
+            {
+              resource_type: 'auto', // o 'raw'
+              // Otras opciones adicionales
+            },
+            (error: any, result: any) => {
+              if (error) {
+                reject(error);
+              } else {
+                resolve(result.secure_url);
+              }
+            },
+          )
+          .end(file.buffer);
+      });
+
+      console.log(result);
+      return result;
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }

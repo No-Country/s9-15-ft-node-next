@@ -15,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className={glory.className}>
+      <body className={`${glory.className} w-full`}>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>

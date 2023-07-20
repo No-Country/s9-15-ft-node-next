@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { FaPlay } from 'react-icons/fa';
+import { GoKebabHorizontal } from 'react-icons/go';
 import { IoIosPodium } from 'react-icons/io';
 
 import compartir from '@/app/assets/compartir.png';
@@ -114,7 +115,7 @@ const songs: Song[] = [
 ];
 export default function Markedplace() {
   const [selectedSongIndex, setSelectedSongIndex] = useState<number | null>(null);
-  const colors = ['bg-orange-200', 'bg-white'];
+  const colors = ['bg-orange-100', 'bg-white'];
   const handleSongSelect = (index: number) => {
     setSelectedSongIndex(index);
   };
@@ -122,93 +123,80 @@ export default function Markedplace() {
     <div className="mt-20">
       <div className="flex justify-between">
         <h2 className="pl-5 text-[32px] text-orange-500">Marketplace</h2>
-        <div className="flex justify-between">
-          <Image src={compartir} alt="logo" />
-          <Image src={eliminar} alt="logo" />
-          <Image src={subir} alt="logo" />
+
+        <div className="flex items-center gap-3 pr-5">
+          <div className="">
+            <Image className="object-cover" src={compartir} alt="logo" />
+          </div>
+          <div className="h-[48px] w-[48px] ">
+            <Image src={eliminar} alt="logo" />
+          </div>
+          <div className="object-cover">
+            <Image className="" src={subir} alt="logo" />
+          </div>
         </div>
       </div>
-      <div className="border-greey-100 ml-5 flex  w-[98%]  items-center justify-center border-[2px] "></div>
-
-      <section>
+      <div className="border-greey-100 flex  w-full  items-center justify-center border-[1px] "></div>
+      <div className=" mt-10 flex items-center justify-center">
+        <p className="w-[302px] text-center text-sm font-normal text-black md:w-[40%] md:text-[18px]">
+          Aquí tienes la lista de tus alucinantes creaciones musicales publicadas en SoundWave
+          Marketplace que van a conquistar los oídos del mundo
+        </p>
+      </div>
+      <section className="mt-5 flex w-full">
         {songs.length > 0 ? (
-          <div className="flex h-[400px] w-[100%] flex-col">
-            <div className="overflow-x-auto " style={{ maxHeight: '75%' }}>
-              <article className="p-10 text-center">
-                Aquí tienes la lista de tus alucinantes creaciones musicales publicadas en SoundWave
-                Marketplace que van a conquistar los oídos del mundo
-              </article>
-              <div className="inline-block w-full py-2 sm:px-6 lg:px-8">
-                <div className="overflow-hidden">
-                  <table className="w-[100%]">
-                    <thead className="border-b bg-white">
-                      <tr>
-                        <th
-                          scope="col"
-                          className="pb-2 text-left text-sm font-medium text-gray-900"
-                        >
-                          Nombre v
+          <div className="flex w-full flex-col items-center justify-center px-3">
+            <div className="w-[100%]">
+              <div className=" w-full">
+                <div className="">
+                  <table className="w-full ">
+                    <thead className="sticky top-0 border-b bg-white">
+                      <tr className="h-12 border-b border-zinc-700 text-left text-xs md:text-lg">
+                        <th scope="col" className="p-[11px] ">
+                          Nombre
                         </th>
-                        <th
-                          scope="col"
-                          className="pb-2 text-left text-sm font-medium text-gray-900"
-                        >
-                          Artista v
+                        <th scope="col" className="p-[11px]">
+                          Precio
                         </th>
-                        <th
-                          scope="col"
-                          className="pb-2 text-left text-sm font-medium text-gray-900 "
-                        >
-                          Disco v
+                        <th scope="col" className="p-[11px]">
+                          Descargas
                         </th>
-                        <th
-                          scope="col"
-                          className="pb-2 text-left text-sm font-medium text-gray-900"
-                        >
-                          Duracion v
+                        <th scope="col" className="p-[11px]">
+                          Ventas
                         </th>
-                        <th
-                          scope="col"
-                          className="pb-2 text-left text-sm font-medium text-gray-900"
-                        ></th>
+                        <th scope="col" className="p-[11px]"></th>
                       </tr>
                     </thead>
                     <tbody>
                       {songs.map((song, index) => (
                         <tr
                           key={index}
-                          className={`border-b ${colors[index % colors.length]}`}
+                          className={`whitespace-nowrap border-b border-neutral-400 text-sm font-medium ${
+                            colors[index % colors.length]
+                          } text-xs md:text-lg`}
                           onClick={() => {
                             handleSongSelect(index);
                           }}
                         >
-                          <td className="whitespace-nowrap px-3 py-4 text-sm font-medium text-gray-900">
+                          <td className="px-3 py-4 ">
                             <div className="flex items-center gap-1">
                               {selectedSongIndex === index && (
-                                <td className="whitespace-nowrap  text-[8px] text-gray-900">
+                                <td className="text-[8px]">
                                   <FaPlay />
                                 </td>
                               )}
                               <div>{song.title}</div>
                               {selectedSongIndex === index && (
-                                <td className="whitespace-nowrap  text-[15px] text-gray-900">
+                                <td className="text-[15px]">
                                   <IoIosPodium />
                                 </td>
                               )}
                             </div>
                           </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm font-light text-gray-900">
-                            {song.artista}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm font-light text-gray-900">
-                            {song.disco}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm font-light text-gray-900">
-                            {song.duracion}
-                          </td>
-                          <td className="whitespace-nowrap px-3 py-4 text-sm font-light text-gray-900">
-                            :
-                          </td>
+                          <td className="px-3 py-4">{song.artista}</td>
+                          <td className="px-3 py-4">{song.disco}</td>
+                          <td className="px-3 py-4">{song.duracion}</td>
+                          <td className="px-3 py-4">{<GoKebabHorizontal />}</td>
                         </tr>
                       ))}
                     </tbody>

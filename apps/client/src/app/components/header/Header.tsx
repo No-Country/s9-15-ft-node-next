@@ -15,11 +15,15 @@ export default function Header() {
     <div>
       <header className="border-b-2 border-gray-400 md:border-none">
         <nav>
-          <div className="items-center justify-between px-4 pt-5 md:flex md:items-center ">
+          <div className="items-center justify-between px-4 pt-5 md:flex md:items-center">
             <div>
               <div className="flex items-center justify-between ">
                 <div className="flex">
-                  <Image className=" h-[54px] w-[353px]  px-1" src={logo} alt="logo" />{' '}
+                  <Image
+                    className="h-[30px] w-[195px]  px-1 md:h-[54px] md:w-[353px]"
+                    src={logo}
+                    alt="logo"
+                  />{' '}
                 </div>
                 <div className="md:hidden">
                   <button
@@ -31,7 +35,7 @@ export default function Header() {
                     {navbar ? (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-[48px] w-[48px] text-orange-500"
+                        className="h-[38px] w-[48px] text-orange-500"
                         viewBox="0 0 20 20"
                         fill="currentColor"
                       >
@@ -44,7 +48,7 @@ export default function Header() {
                     ) : (
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-[48px] w-[48px] text-orange-500"
+                        className="h-12 w-12 text-orange-500 "
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -67,7 +71,7 @@ export default function Header() {
                   navbar ? 'block' : 'hidden'
                 }`}
               >
-                <nav className="flex flex-col items-center md:flex-row md:gap-8 ">
+                <nav className="mb-5 flex flex-col space-y-6 px-3 md:mb-0 md:flex md:inline-flex md:flex-row md:items-center md:justify-center md:gap-8">
                   <div>
                     <Link href={`/login`}>
                       <ButtonInicio>Iniciar Sesión</ButtonInicio>

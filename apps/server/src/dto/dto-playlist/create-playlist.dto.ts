@@ -1,13 +1,6 @@
-import {
-  IsString,
-  IsNotEmpty,
-  IsArray,
-  IsNumber,
-  IsDateString,
-  IsOptional,
-} from 'class-validator';
-import { ObjectId } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { ObjectId } from 'mongoose';
 
 export class CreatePlaylistDto {
   @ApiProperty({

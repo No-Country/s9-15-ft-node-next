@@ -10,5 +10,5 @@
     "*.css": "tailwindcss"
   },
   "prettier.jsxSingleQuote": false,
-  "conventionalCommits.scopes": ["auth", "zustand", "ts", "tailwindcss"]
+  "conventionalCommits.scopes": ["auth", "zustand", "ts", "tailwindcss", "upload"]
 }

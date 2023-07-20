@@ -9,27 +9,46 @@ import {
 } from 'class-validator';
 
 export class UpdateUserDto {
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Nombre del Usuario',
+    example: 'Juan',
+  })
   @IsOptional()
   @IsString()
   name?: string;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Apellido del usuario',
+    example: 'faino',
+  })
   @IsOptional()
   @IsString()
   surname?: string;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Nombre de Usuario',
+    example: 'Juan21',
+  })
   @IsOptional()
   @IsString()
   username?: string;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Responde a si el usuario es artista o no',
+    example: true,
+  })
   @IsOptional()
   @IsBoolean()
   artist?: boolean;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Email del usuario',
+    example: 'pedro@123.com',
+  })
   @IsOptional()
   @IsEmail()
   email?: string;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Contraseña del usuario',
+    example: 'passwordD1!',
+    required: true,
+  })
   @IsOptional()
   @IsString()
   @MinLength(8)

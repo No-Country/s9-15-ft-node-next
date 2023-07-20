@@ -2,39 +2,66 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNumber, IsOptional } from 'class-validator';
 
 export class UpdateSongDto {
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Nombre de la canción',
+    example: 'Wont fall',
+  })
   @IsOptional()
   @IsString()
   name?: string;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Duracion de la canción en segundos',
+    example: 180,
+  })
   @IsOptional()
   @IsNumber()
   duration?: number;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Id del usuario creador de la canción',
+    example: '611234567890123456789012',
+    required: false,
+  })
   @IsOptional()
   @IsString()
   user?: string;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Nombre del coArtista de la canción',
+    example: 'Post Malone',
+  })
   @IsOptional()
   @IsString()
   coArtist?: string;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Precio de la canción',
+    example: 35,
+  })
   @IsOptional()
   @IsNumber()
   price?: number;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Genero de la canción',
+    example: 'Rock',
+  })
   @IsOptional()
   @IsString()
   genre?: string;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Imagen de la canción',
+  })
   @IsOptional()
   @IsString()
   image?: string;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Fecha de creacion de la canción',
+    example: '30/03/2003',
+  })
   @IsOptional()
   @IsString()
   date?: Date;
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Album de la canción',
+    example: 'Random access memories',
+  })
   @IsOptional()
   @IsString()
   album?: string;

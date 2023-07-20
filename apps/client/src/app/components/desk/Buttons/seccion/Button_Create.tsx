@@ -6,7 +6,7 @@ interface ButtonInicioProps {
 
 export function ButtonCreate({ children }: ButtonInicioProps) {
   return (
-    <button className="inline-flex h-[52px] w-[150px] items-center justify-center gap-2.5 p-4 text-[16px]  text-black hover:bg-orange-400 md:bg-orange-500  md:text-[18px] md:font-semibold">
+    <button className="text-[16px] text-black md:mb-7 md:h-[52px] md:w-[150px] md:bg-orange-500 md:text-[18px] md:font-semibold md:hover:bg-orange-400">
       {children}
     </button>
   );

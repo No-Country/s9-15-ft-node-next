@@ -10,14 +10,15 @@ export class CreateSongDto {
   @IsString()
   name: string;
   @ApiProperty({
-    description: 'Duración de la canción',
+    description: 'Duracion de la canción en segundos',
     example: 180,
     required: true,
   })
   @IsNumber()
   duration: number;
   @ApiProperty({
-    description: 'User',
+    description: 'Id del usuario creador de la canción',
+    example: '611234567890123456789012',
     required: true,
   })
   @IsString()

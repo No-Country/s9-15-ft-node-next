@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, HydratedDocument, Types } from 'mongoose';
 import { User } from './user.schema';
-import * as autoIncrement from 'mongoose-plugin-autoinc';
 
 export type SongDocument = HydratedDocument<Song>;
 

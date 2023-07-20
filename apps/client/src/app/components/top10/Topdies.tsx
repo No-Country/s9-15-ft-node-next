@@ -1,10 +1,9 @@
 /* eslint-disable prettier/prettier */
 'use client';
 import { useEffect, useState } from 'react';
-
 import ReproductorP from '@/app/components/reprodutorpequeño/ReproductorP';
-
 import { ButtonCuatro } from '../mobile/buttons/Button_cuatro';
+import { useMedia } from 'use-media';
 interface Song {
   id: number;
   title: string;
@@ -130,21 +129,35 @@ export default function Topdies() {
   };
 
   const visibleSongs = showAll || !isSmallScreen ? songs : songs.slice(0, 5);
+  const halfIndex = Math.ceil(visibleSongs.length / 2);
+  const firstHalf = visibleSongs.slice(0, halfIndex);
+  const secondHalf = visibleSongs.slice(halfIndex);
 
   return (
-    <div className="mb-10">
-      <h2 className="ml-5 text-2xl font-semibold leading-normal text-zinc-700 md:text-[32px]">
+    <div>
+      <h2 className="md:ml-7 ml-6 text-xl font-semibold leading-normal text-zinc-700 md:text-[32px]">
         Top 10 - Lo más vendido por nuestros artistas
       </h2>
-      <div className="w-full ">
-        <section className="mx-[5%] mt-10 flex flex-wrap justify-between gap-5">
-          {visibleSongs.map((song, index) => (
-            <ReproductorP key={index} songs={[song]} />
-          ))}
+      <div className="w-full">
+        <section className={`ml-8 flex flex-wrap pb-7 pt-14 md:flex-row md:gap-4 md:items-center`}>
+          <div className="md:w-[49%]">
+            {firstHalf.map((song, index) => (
+              <div key={index} className={`flex-grow`}>
+                <ReproductorP songs={[song]} />
+              </div>
+            ))}
+          </div>
+          <div className="md:w-[49%]">
+            {secondHalf.map((song, index) => (
+              <div key={index} className={`flex-grow`}>
+                <ReproductorP songs={[song]} />
+              </div>
+            ))}
+          </div>
         </section>
         {!showAll && isSmallScreen && (
-          <div onClick={handleShowMore} className="mt-4 flex justify-center">
-            <ButtonCuatro>Ver Mas</ButtonCuatro>
+          <div onClick={handleShowMore} className="flex justify-center mt-4">
+            <ButtonCuatro>VER MÁS</ButtonCuatro>
           </div>
         )}
       </div>

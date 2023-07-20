@@ -1,13 +1,12 @@
 import {
-  Controller,
-  Get,
-  Post,
-  Delete,
-  Put,
   Body,
-  Param,
-  NotFoundException,
   ConflictException,
+  Controller,
+  Delete,
+  Get,
+  NotFoundException,
+  Param,
+  Post,
 } from '@nestjs/common';
 import { PlaylistService } from './playlist.service';
 

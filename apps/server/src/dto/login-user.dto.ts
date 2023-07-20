@@ -9,15 +9,19 @@ import {
 
 export class LoginUserDto {
   @ApiProperty({
-    description: 'Nombre de la canción',
-    example: 'Came up',
+    description: 'Email de usuario',
+    example: 'juanperez@gmail.com',
     required: true,
   })
   @IsEmail()
   @IsNotEmpty()
   email: string;
 
-  @ApiProperty()
+  @ApiProperty({
+    description: 'Password',
+    example: 'Password123!',
+    required: true,
+  })
   @IsNotEmpty()
   @IsString()
   @MinLength(8)
