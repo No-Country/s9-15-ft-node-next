@@ -5,6 +5,7 @@ interface LoginData {
 
 interface PostLoginResult {
   ok: boolean;
+  errorMessage?: string;
 }
 
 const usePostLogin =
@@ -31,7 +32,7 @@ const usePostLogin =
       const errorMessage = response != null ? await response.text() : 'No hay mensaje';
       console.error('El error de fetch operacion es:', error);
       console.error('El mensaje de server es:', errorMessage);
-      return { ok: false };
+      return { ok: false, errorMessage };
     }
   };
 

@@ -39,7 +39,7 @@ export default function FormLogin() {
       .string()
       .required('La contraseña es obligatoria')
       .matches(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{5,}$/,
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,}$/,
         'La contraseña debe contener al menos una letra minúscula, una letra mayúscula, un número y un carácter especial'
       ),
   });
@@ -62,7 +62,20 @@ export default function FormLogin() {
     if (result.ok) {
       // hacer algo si la solicitud es exitosa
     } else {
-      setError(new Error('Algo ha pasado, vuelvalo ha intentar mas tarde'));
+      const error = result.errorMessage !== undefined ? result.errorMessage : ''; // asignar un valor predeterminado a la variable error si es undefined
+
+      // Buscar la cadena de texto '{"message":"USUARIO O CONTRASEÑA INCORRECTA"}' dentro del contenido del error
+      const usuarioIncorrecto = error.match(/{"message":"USUARIO O CONTRASEÑA INCORRECTA"}/)?.[0];
+
+      if (usuarioIncorrecto != null) {
+        setError(new Error('Usuario o contraseña incorrecta'));
+      } else {
+        // Buscar la cadena de texto dentro de los corchetes []
+        const mensajeLimpio = error.match(/\[([^\]]+)\]/)?.[1]?.trim() ?? '';
+        console.log(mensajeLimpio);
+
+        setError(new Error('Vuelvalo ha intentar mas tarde ' + mensajeLimpio));
+      }
     }
   };
 
@@ -141,7 +154,11 @@ export default function FormLogin() {
             {isSubmitting ? 'Loading...' : 'Continuar'}
           </button>
 
-          {error != null && <div>Error: {error.message}</div>}
+          {error != null && (
+            <p className="flex items-center justify-center text-center text-sm  text-red-500">
+              {error.message}
+            </p>
+          )}
         </form>
         <div className="mt-4 flex justify-center">
           <div className="inline-flex items-center justify-center ">
