@@ -36,7 +36,7 @@ export default function CardAlbum({ album }: { album: Album }) {
             {album.descripcion}
           </div>
         </div>
-        <div className="inline-flex cursor-pointer rounded items-center justify-center gap-2.5 self-stretch border border-zinc-700 px-5 py-2">
+        <div className="inline-flex cursor-pointer items-center justify-center gap-2.5 self-stretch rounded border border-zinc-700 px-5 py-2">
           <div className="text-center text-xs font-medium leading-[13.46px] text-zinc-700">
             {/* $ {Number(index) !== 0 && !isNaN(Number(index)) ? Number(index) + 1 : 1}0.00 */}${' '}
             {album.precio}

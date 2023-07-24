@@ -22,7 +22,6 @@ interface FormValues {
 }
 
 export default function FormLogin() {
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<Error | null>(null);
   const router = useRouter();
@@ -77,33 +76,6 @@ export default function FormLogin() {
   };
 
   const [visible, setVisible] = useState(false);
-
-  const handleLogin = async (e: FormEvent) => {
-    e.preventDefault();
-
-    try {
-      const response = await fetch('http://localhost:4000/auth-jwt/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: field1,
-          password: field2,
-        }),
-      });
-
-      const data = await response.json();
-      console.log(data);
-      if (response.ok) {
-        localStorage.setItem('jwtToken', data.token);
-      } else {
-        setError(data.message || 'Login failed. Please try again.');
-      }
-    } catch (error) {
-      setError('An error occurred. Please try again.');
-    }
-  };
 
   return (
     <>

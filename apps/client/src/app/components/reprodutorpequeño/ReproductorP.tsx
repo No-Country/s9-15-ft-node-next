@@ -108,7 +108,7 @@ const ReproductorP: React.FC<ReproductorProps> = ({ songs }) => {
               {isPlaying ? <Image src={Stop} alt="Stop" /> : <Image src={Play} alt="Play" />}
             </button>
           </div>
-          <div className="inline-flex h-[30px] w-14 rounded items-center justify-center gap-2.5 border border-zinc-700 px-5 py-2 hover:border-orange-500 md:w-[85px]">
+          <div className="inline-flex h-[30px] w-14 items-center justify-center gap-2.5 rounded border border-zinc-700 px-5 py-2 hover:border-orange-500 md:w-[85px]">
             <button
               className="group relative text-center text-xs font-medium leading-[13.46px] text-zinc-700"
               onClick={() => {
@@ -118,7 +118,7 @@ const ReproductorP: React.FC<ReproductorProps> = ({ songs }) => {
               <span className="text-center text-xs font-medium leading-[13.46px] text-zinc-700">
                 {songs[0].price + '0'}
               </span>
-              <span className="absolute left-1/2 mt-[-8px] h-[30px] rounded w-14 -translate-x-1/2 transform bg-orange-500 pt-2 text-black opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:w-[85px]">
+              <span className="absolute left-1/2 mt-[-8px] h-[30px] w-14 -translate-x-1/2 transform rounded bg-orange-500 pt-2 text-black opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:w-[85px]">
                 COMPRAR
               </span>
             </button>

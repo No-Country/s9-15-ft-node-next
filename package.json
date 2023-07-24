@@ -6,6 +6,7 @@
     "clean": "turbo run clean --no-daemon",
     "dev": "dotenv -- turbo run dev --no-daemon --concurrency 20",
     "dc": "dotenv -- turbo run dc --no-daemon --concurrency 20",
+    "dct": "dotenv -- turbo run dct --no-daemon --concurrency 20",
     "build": "turbo run build --no-daemon",
     "check": "turbo run check --no-daemon",
     "storybook:dev": "turbo run storybook:dev --no-daemon",
