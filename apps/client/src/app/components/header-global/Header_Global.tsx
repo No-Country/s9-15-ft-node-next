@@ -34,7 +34,7 @@ export default function HeaderGlobal() {
             <div>
               <div className="flex items-center justify-between">
                 <div className="flex">
-                  <Image src={logo} alt="logo" />{' '}
+                  <Image src={logo} alt="logo" />
                 </div>
                 <div className="md:hidden">
                   <button
@@ -97,7 +97,7 @@ export default function HeaderGlobal() {
                         <div className="flex h-[180px] w-screen flex-col items-start justify-evenly border-b-2  border-gray-400">
                           <button>Mis Datos</button>
                           <button>Notificaciones</button>
-                          <button>Metodos de Pago</button>
+                          <button>Metodo de Pago</button>
                         </div>
                         <div className="flex h-[80px] w-screen flex-col items-start justify-evenly border-b-2  border-gray-400">
                           <button>Cerrar Sesión</button>
