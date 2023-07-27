@@ -110,7 +110,9 @@ const ReproductorP: React.FC<ReproductorProps> = ({ songs, index, handlePayment 
           <div className="inline-flex h-[30px] w-14 items-center justify-center gap-2.5 rounded border border-zinc-700 px-5 py-2 hover:border-orange-500 md:w-[85px]">
             <button
               className="group relative text-center text-xs font-medium text-zinc-700"
-              onClick={() => { handlePayment(songs[0]); }} // Use handlePayment function here
+              onClick={() => {
+                handlePayment(songs[0]);
+              }} // Use handlePayment function here
             >
               <span
                 className="text-center text-xs font-medium text-zinc-700"
