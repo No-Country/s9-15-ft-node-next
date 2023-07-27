@@ -1,9 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-floating-promises */
-
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 import cuatro from '@/app/assets/Final landing.png';
 import ruedamusical from '@/app/assets/landingpage/1.png';
@@ -19,7 +17,6 @@ import Header from '@/app/components/header/Header';
 import { ButtonCuatro } from './mobile/buttons/Button_cuatro';
 import { ButtonTres } from './mobile/buttons/Button_tres';
 export default function Landing() {
-  const router = useRouter();
   return (
     <div className="w-full">
       <Header />
@@ -43,13 +40,7 @@ export default function Landing() {
       </div>
       <section className="relative z-10 mb-10 flex flex-col items-center justify-center gap-5 pt-10 ">
         <ButtonTres>CONOCE MÁS</ButtonTres>
-        <ButtonCuatro
-          onClick={() => {
-            router.push('/login');
-          }}
-        >
-          ¡ÚNETE AHORA!
-        </ButtonCuatro>
+        <ButtonCuatro>¡ÚNETE AHORA!</ButtonCuatro>
       </section>
       {/* segunda */}
       <section className="mb-10 flex flex-col items-center justify-evenly">
@@ -95,13 +86,7 @@ export default function Landing() {
               </p>
             </div>
             <div className="relative z-10 flex justify-center md:bottom-20 md:mt-16 ">
-              <ButtonCuatro
-                onClick={() => {
-                  router.push('/register');
-                }}
-              >
-                ¡ÚNETE AHORA!
-              </ButtonCuatro>
+              <ButtonCuatro>¡ÚNETE AHORA!</ButtonCuatro>
               <Link href={`/login`}>
                 <ButtonDos>¡ÚNETE AHORA!</ButtonDos>
               </Link>
@@ -154,13 +139,7 @@ export default function Landing() {
       </div>
 
       <div className="flex items-center justify-center">
-        <ButtonCuatro
-          onClick={() => {
-            router.push('/register');
-          }}
-        >
-          ¡ÚNETE AHORA!
-        </ButtonCuatro>
+        <ButtonCuatro>¡ÚNETE AHORA!</ButtonCuatro>
       </div>
 
       {/* curta */}
