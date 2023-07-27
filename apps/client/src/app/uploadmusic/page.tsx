@@ -22,7 +22,7 @@ export default function page() {
           <h4 className="ml-7 mt-10 text-2xl font-medium text-orange-500 md:ml-10">
             Publica en Marketplace
           </h4>
-          <SelectForm />å
+          <SelectForm />
           <div className=" mb-10 ml-7 text-[14px]  font-normal leading-normal text-black md:ml-7">
             © 2023 SoundWave | Todos los Derechos Reservados
           </div>

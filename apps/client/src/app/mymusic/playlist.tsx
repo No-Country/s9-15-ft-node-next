@@ -78,7 +78,7 @@ export default function PlayList() {
   useEffect(() => {
     const fetchSongs = async (): Promise<void> => {
       try {
-        const response = await axios.get<Song[]>('http://localhost:4000/songs?limit=10');
+        const response = await axios.get<Song[]>('http://localhost:4000/songs?limit=0');
         setSongs(response.data);
       } catch (error) {
         console.error('Error fetching songs:', error);
@@ -173,9 +173,8 @@ export default function PlayList() {
                     {filteredSongs.map((song, index) => (
                       <tr
                         key={song._id}
-                        className={`whitespace-nowrap border-b border-neutral-400 text-sm font-medium ${
-                          colors[index % colors.length]
-                        }`}
+                        className={`whitespace-nowrap border-b border-neutral-400 text-sm font-medium ${colors[index % colors.length]
+                          }`}
                         onClick={() => {
                           handleSongSelect(song._id, index);
                         }}
@@ -214,9 +213,8 @@ export default function PlayList() {
                     {filteredSongs.map((song, index) => (
                       <tr
                         key={song._id}
-                        className={`whitespace-nowrap border-b border-neutral-400 text-sm font-medium ${
-                          colors[index % colors.length]
-                        }`}
+                        className={`whitespace-nowrap border-b border-neutral-400 text-sm font-medium ${colors[index % colors.length]
+                          }`}
                         onClick={() => {
                           handleSongSelect(song._id, index);
                         }}

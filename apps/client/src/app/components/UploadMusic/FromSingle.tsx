@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { type ChangeEvent, type FormEvent, useState } from 'react';
 
 import MyModal from '@/app/components/ModalAlerts/AlertArchivoDeAudio';
+import { boolean } from 'yup';
 
 interface FormState {
   field1: string;
@@ -25,9 +26,17 @@ export default function FromSingle() {
     field2: '',
     field3: '',
 
-    checkbox1: false,
+    checkbox1: true,
     checkbox2: false,
   };
+
+  const [checkMusic, setCheckMusic] = useState({
+    field1: boolean,
+    field2: boolean,
+    field3: boolean,
+    checkbox1: boolean,
+    checkbox2: boolean,
+  });
 
   const [form, setForm] = useState<FormState>(initialState);
 
@@ -45,7 +54,7 @@ export default function FromSingle() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Lógica para enviar el formulario
+    console.log(1, form);
   };
 
   const isFormCompleted = field1 !== '' && field2 !== '' && field3 !== '' && checkbox1 && checkbox2;
@@ -84,12 +93,12 @@ export default function FromSingle() {
                   name="field2"
                   value={form.field2}
                   onChange={handleChange}
-                  id="floating_outlined"
+                  id="field2"
                   className="border-1 peer block w-[105px] appearance-none rounded border-neutral-400 bg-transparent bg-white px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-orange-500 focus:outline-none focus:ring-0 "
                   placeholder=" "
                 />
                 <label
-                  htmlFor="floating_outlined"
+                  htmlFor="field2"
                   className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-[16px] text-sm  text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-gray-900 md:text-[16px]"
                 >
                   Precio
@@ -101,12 +110,12 @@ export default function FromSingle() {
                   name="field3"
                   value={form.field3}
                   onChange={handleChange}
-                  id="floating_outlined"
+                  id="field3"
                   className="border-1 peer block w-[215px] appearance-none rounded border-neutral-400 bg-transparent bg-white px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-orange-500 focus:outline-none focus:ring-0 "
                   placeholder=" "
                 />
                 <label
-                  htmlFor="floating_outlined"
+                  htmlFor="field3"
                   className="absolute left-1 top-2 z-10 origin-[0] -translate-y-4 scale-75 transform bg-white px-2 text-[16px] text-sm  text-gray-500 duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:scale-100 peer-focus:top-2 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:px-2 peer-focus:text-gray-900 md:text-[16px]"
                 >
                   Elije la moneda
@@ -266,11 +275,10 @@ export default function FromSingle() {
               </Link>
 
               <button
-                className={`mb-10 h-12 w-full  gap-2.5 rounded-md text-[16px] font-semibold uppercase leading-none md:w-[144px] md:rounded-md  ${
-                  isFormCompleted
-                    ? 'bg-orange-500 text-black hover:bg-orange-400'
-                    : ' bg-zinc-300 text-neutral-400'
-                }`}
+                className={`mb-10 h-12 w-full  gap-2.5 rounded-md text-[16px] font-semibold uppercase leading-none md:w-[144px] md:rounded-md  ${isFormCompleted
+                  ? 'bg-orange-500 text-black hover:bg-orange-400'
+                  : ' bg-zinc-300 text-neutral-400'
+                  }`}
                 type="submit"
                 disabled={!isFormCompleted}
               >
