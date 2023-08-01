@@ -35,9 +35,15 @@ export class AlbumsService {
       .populate({ path: 'user', model: 'User' });
   }
 
-  async findByArtist(usuario: string) {
-    return await this.albumModel
-      .findOne({ usuario })
-      .populate({ path: 'user', model: 'User' });
+  async findByArtist(id: string) {
+    return this.albumModel.findOne({ usuario: id });
+    // .populate({ path: 'usuario', model: 'User' })
+  }
+
+  async findById(id: string) {
+    return this.albumModel
+      .findById(id)
+      .populate({ path: 'usuario', model: 'User' })
+      .populate({ path: 'canciones', model: 'Song' });
   }
 }
