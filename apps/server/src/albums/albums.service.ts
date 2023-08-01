@@ -24,19 +24,21 @@ export class AlbumsService {
   }
 
   async delete(id: string) {
-    return await this.albumModel
-      .findByIdAndDelete(id)
-      .populate({ path: 'user', model: 'User' });
+    return await this.albumModel.findByIdAndDelete(id);
   }
 
   async findByName(nombre: string) {
     return await this.albumModel
       .findOne({ nombre })
-      .populate({ path: 'user', model: 'User' });
+      .populate({ path: 'usuario', model: 'User' })
+      .populate({ path: 'canciones', model: 'Song' });
   }
 
   async findByArtist(id: string) {
-    return this.albumModel.findOne({ usuario: id });
+    return this.albumModel
+      .findOne({ usuario: id })
+      .populate({ path: 'usuario', model: 'User' })
+      .populate({ path: 'canciones', model: 'Song' });
     // .populate({ path: 'usuario', model: 'User' })
   }
 
