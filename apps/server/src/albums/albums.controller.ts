@@ -69,6 +69,27 @@ export class AlbumsController {
   async findByArtist(@Param('id') id: string, @Res() res) {
     try {
       const albums = await this.albumService.findByArtist(id);
+      console.log(albums);
+      if (!albums) {
+        return res.sendStatus(HttpStatus.NOT_FOUND).json({
+          message: 'No se han encontrado albumes a nombre de este artista',
+        });
+      }
+      res.status(HttpStatus.OK).json(albums);
+    } catch (error) {
+      return res
+        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+        .json({ error: error.message });
+    }
+  }
+
+  @ApiParam({ name: 'id', description: 'ID del album' })
+  @ApiOperation({ summary: 'Obtener albunes por su id' })
+  @Get('detail/:id')
+  async findById(@Param('id') id: string, @Res() res) {
+    try {
+      const albums = await this.albumService.findById(id);
+      console.log(albums);
       if (!albums) {
         return res.sendStatus(HttpStatus.NOT_FOUND).json({
           message: 'No se han encontrado albumes a nombre de este artista',
@@ -90,9 +111,12 @@ export class AlbumsController {
     @Res() res,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    console.log(body.canciones);
-
     try {
+      // const songs = [
+      //   '64aefb77c86ee8204ee39e7e',
+      //   '64aefb52c86ee8204ee39e7c',
+      //   '64aefb2bc86ee8204ee39e7a',
+      // ];
       const { canciones, duracion, nombre, descripcion, usuario, precio } =
         body;
 
