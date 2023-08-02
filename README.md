@@ -4,7 +4,7 @@
 
 ## Descripción
 
-Descubre, compra y apoya la música de talentosos artistas de todo el mundo con nuestra plataforma gratuita, diseñada exclusivamente para los amantes de la música. Bienvenido a SoundWave, el lugar donde el nuevo talento encuentra su hogar.
+Descubre, compra y apoya   la música de talentosos artistas de todo el mundo con nuestra plataforma gratuita, diseñada exclusivamente para los amantes de la música. Bienvenido a SoundWave, el lugar donde el nuevo talento encuentra su hogar.
 
 Nuestra app se centra en dar apoyo a artistas independientes, permitiéndoles subir sus canciones o álbumes para obtener el respaldo que necesitan y así seguir creando música que llegue a tus oídos y corazón.
 
