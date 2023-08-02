@@ -71,7 +71,7 @@ export default function Header() {
                   navbar ? 'block' : 'hidden'
                 }`}
               >
-                <nav className="mb-5 flex flex-col space-y-6 px-3 md:mb-0 md:flex md:inline-flex md:flex-row md:items-center md:justify-center md:gap-8">
+                <nav className="mb-5 flex flex-col space-y-6 px-3 md:mb-0 md:flex md:flex-row md:items-center md:justify-center md:gap-8">
                   <div>
                     <Link href={`/login`}>
                       <ButtonInicio>Iniciar Sesión</ButtonInicio>
