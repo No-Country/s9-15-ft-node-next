@@ -5,7 +5,6 @@ import { AuthJwtService } from '../auth-jwt/auth-jwt.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { LoginUserDto } from '../dto/login-user.dto';
 import { TokenService } from '../helpers/token_creator';
-import jwt_decode from 'jwt-decode';
 
 @ApiTags('Auth-jwt')
 @Controller('auth-jwt')
