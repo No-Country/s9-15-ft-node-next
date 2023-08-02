@@ -10,7 +10,7 @@ Nuestra app se centra en dar apoyo a artistas independientes, permitiéndoles su
 
 Disfruta de la experiencia de escuchar música gratis a través de nuestro reproductor, donde podrás sumergirte en la creatividad y pasión de artistas emergentes. Pero no solo se trata de escuchar, sino también de ser un aliado para estos talentosos músicos. Si encuentras una canción o álbum que te cautiva, ¡puedes adquirirlo y apoyar directamente a tus artistas favoritos para que sigan produciendo y compartiendo su arte con el mundo!.
 
-Además, SoundWave te ofrece una experiencia social única, donde puedes compartir tus descubrimientos musicales, canciones y álbumes favoritos con amigos y seguidores. Únete a la comunidad de amantes de la música, comparte emociones y comentarios, y mantente al tanto de las últimas noticias y novedades de tus artistas preferidos.
+Además, SoundWave te ofrece una experiencia social única, donde puedes compartir tus descubrimientos musicales, canciones y álbumes favoritos con amigos y seguidores. Únete a la comunidad de amantes de la música, comparte emociones y comentarios, y mantente al tanto de las últimas noticias y novedades de tus artistas preferidos
 
 En SoundWave, creemos que la música es un lenguaje universal y un puente entre culturas y personas. Queremos conectar a músicos talentosos con oyentes apasionados y ayudar a forjar relaciones significativas en el mundo musical
 
