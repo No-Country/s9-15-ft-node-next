@@ -2,7 +2,7 @@
 
 ![](https://res.cloudinary.com/dlvpftdsm/image/upload/v1690232883/soundwave-logo_o7a8tk.png)
 
-## Descripción
+## Descripción.
 
 Descubre, compra y apoya   la música de talentosos artistas de todo el mundo con nuestra plataforma gratuita, diseñada exclusivamente para los amantes de la música. Bienvenido a SoundWave, el lugar donde el nuevo talento encuentra su hogar.
 
