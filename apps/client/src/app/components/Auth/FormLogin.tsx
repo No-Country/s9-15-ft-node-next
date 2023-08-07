@@ -26,7 +26,7 @@ export default function FormLogin() {
   const [error, setError] = useState<Error | null>(null);
   const router = useRouter();
 
-  const postRoute = 'http://localhost:4000/auth-jwt/login';
+  const postRoute = 'https://example-xi-lemon.vercel.app/auth-jwt/login';
   const postLogin = usePostLogin(postRoute);
 
   const schema = yup.object().shape({

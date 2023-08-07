@@ -49,7 +49,7 @@ export interface dataFetch extends Omit<data, 'fechaNacimiento'> {
 export default function FormRegister() {
   const [visible, setVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const postRoute = 'http://localhost:4000/auth-jwt/register';
+  const postRoute = 'https://example-xi-lemon.vercel.app/auth-jwt/register';
   const { postRegister } = usePostRegister(postRoute);
   const [error, setError] = useState<Error | null>(null);
   const {
